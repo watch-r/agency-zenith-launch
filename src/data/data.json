@@ -1,0 +1,326 @@
+{
+  "agency": {
+    "name": "Ten Piece Marketing Agency",
+    "shortName": "Ten Piece",
+    "tagline": "Marketing that moves the needle.",
+    "logoMark": "TP",
+    "yearFounded": 2019
+  },
+  "navigation": [
+    { "label": "Work", "href": "#portfolio" },
+    { "label": "Services", "href": "#services" },
+    { "label": "About", "href": "#about" },
+    { "label": "Pricing", "href": "#pricing" },
+    { "label": "Contact", "href": "#contact" }
+  ],
+  "socials": [
+    { "platform": "instagram", "label": "Instagram", "href": "https://instagram.com", "icon": "Instagram" },
+    { "platform": "linkedin", "label": "LinkedIn", "href": "https://linkedin.com", "icon": "Linkedin" },
+    { "platform": "twitter", "label": "Twitter", "href": "https://twitter.com", "icon": "Twitter" },
+    { "platform": "dribbble", "label": "Dribbble", "href": "https://dribbble.com", "icon": "Dribbble" }
+  ],
+  "hero": {
+    "eyebrow": "Independent creative studio",
+    "headline": "Craft brands people",
+    "headlineAccent": "actually remember.",
+    "description": "We're a ten-piece team of strategists, designers and marketers helping ambitious brands grow through work that's beautifully built and quietly effective.",
+    "primaryCta": { "label": "Start a project", "action": "order" },
+    "secondaryCta": { "label": "See our work", "action": "scroll", "target": "portfolio" },
+    "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80",
+    "imageAlt": "Creative team collaborating around a table"
+  },
+  "trustedBy": {
+    "eyebrow": "Trusted by teams at",
+    "logos": [
+      { "name": "Northwind", "logoText": "NORTHWIND" },
+      { "name": "Meridian", "logoText": "MERIDIAN" },
+      { "name": "Atlas & Co", "logoText": "ATLAS & CO" },
+      { "name": "Foundry", "logoText": "FOUNDRY" },
+      { "name": "Halcyon", "logoText": "HALCYON" },
+      { "name": "Prima", "logoText": "PRIMA" },
+      { "name": "Lumen", "logoText": "LUMEN" },
+      { "name": "Vantage", "logoText": "VANTAGE" }
+    ],
+    "stats": [
+      { "label": "Projects delivered", "value": "240", "suffix": "+" },
+      { "label": "Average ROI lift", "value": "3.4", "suffix": "x" },
+      { "label": "Client retention", "value": "96", "suffix": "%" },
+      { "label": "Industry awards", "value": "18" }
+    ]
+  },
+  "about": {
+    "eyebrow": "About the studio",
+    "heading": "A small studio with a sharp point of view.",
+    "story": "Ten Piece was founded in 2019 by a group of ex-agency creatives who wanted to work more closely, and more honestly, with founders. Today we're ten people — strategists, designers, writers and paid-media specialists — working with clients across Europe and North America.",
+    "mission": "To make thoughtful, measurable marketing accessible to the ambitious teams that need it most.",
+    "vision": "A world where brand and performance aren't opposing disciplines — they're the same craft.",
+    "values": [
+      { "title": "Craft first", "description": "Every deliverable earns its place. No filler, no fluff.", "icon": "Sparkles" },
+      { "title": "Plain-spoken", "description": "We say what we mean and back it with data you can read.", "icon": "MessageCircle" },
+      { "title": "Long-view", "description": "We build systems your brand can grow into for years.", "icon": "Compass" }
+    ],
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=80",
+    "imageAlt": "Studio team in a bright workspace"
+  },
+  "services": [
+    {
+      "id": "svc-seo",
+      "slug": "seo",
+      "title": "Search Engine Optimization",
+      "shortDescription": "Rank for the searches that actually convert.",
+      "description": "Technical audits, content strategy and on-page work that compounds month over month.",
+      "icon": "Search",
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+      "features": ["Technical & on-page audit", "Keyword & intent mapping", "Content roadmap", "Monthly reporting"],
+      "price": 50
+    },
+    {
+      "id": "svc-social",
+      "slug": "social-media",
+      "title": "Social Media",
+      "shortDescription": "Feeds that build a following, not just an audience.",
+      "description": "Editorial calendars, community management and content built to feel native to each platform.",
+      "icon": "Instagram",
+      "image": "https://images.unsplash.com/photo-1611926653458-09294b3142bf?auto=format&fit=crop&w=1200&q=80",
+      "features": ["Content calendar", "Design templates", "Community replies", "Growth reporting"],
+      "price": 50
+    },
+    {
+      "id": "svc-content",
+      "slug": "content",
+      "title": "Content Marketing",
+      "shortDescription": "Editorial that earns attention and trust.",
+      "description": "Long-form articles, thought-leadership and lifecycle emails written by real humans.",
+      "icon": "PenLine",
+      "image": "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1200&q=80",
+      "features": ["Editorial strategy", "4 long-form pieces / mo", "Newsletter production", "SEO integration"],
+      "price": 50
+    },
+    {
+      "id": "svc-ads",
+      "slug": "paid-ads",
+      "title": "Paid Advertising",
+      "shortDescription": "Performance media without the guesswork.",
+      "description": "Google, Meta and LinkedIn campaigns built around a shared source of truth.",
+      "icon": "TrendingUp",
+      "image": "https://images.unsplash.com/photo-1533750516457-a7f992034fec?auto=format&fit=crop&w=1200&q=80",
+      "features": ["Campaign strategy", "Creative production", "Bid management", "Weekly optimisation"],
+      "price": 50
+    },
+    {
+      "id": "svc-brand",
+      "slug": "branding",
+      "title": "Branding & Identity",
+      "shortDescription": "A brand system that scales with you.",
+      "description": "Naming, logo, palette, type and guidelines — packaged for your team to use with confidence.",
+      "icon": "Palette",
+      "image": "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1200&q=80",
+      "features": ["Discovery workshop", "Logo & mark", "Visual system", "Brand guidelines"],
+      "price": 50
+    },
+    {
+      "id": "svc-web",
+      "slug": "web-design",
+      "title": "Web Design & Build",
+      "shortDescription": "Websites that convert as beautifully as they look.",
+      "description": "From marketing sites to product surfaces, designed and built for performance.",
+      "icon": "Monitor",
+      "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1200&q=80",
+      "features": ["UX architecture", "Visual design", "Development", "Analytics setup"],
+      "price": 50
+    }
+  ],
+  "featuredServices": [
+    {
+      "id": "feat-1",
+      "eyebrow": "Featured — Brand systems",
+      "title": "Brand foundations built to last a decade.",
+      "description": "We treat identity as infrastructure. Every mark, colour and word earns its place inside a system your team can operate without us.",
+      "benefits": ["Discovery-led strategy", "Systematic visual language", "Voice & messaging guide", "Team hand-off & training"],
+      "image": "https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1400&q=80",
+      "imageAlt": "Brand identity design mockups",
+      "ctaLabel": "Start a brand project"
+    },
+    {
+      "id": "feat-2",
+      "eyebrow": "Featured — Growth engine",
+      "title": "A performance engine tuned to your funnel.",
+      "description": "Paid media, lifecycle and SEO working from a shared plan — so every euro spent gets measured against the same goal.",
+      "benefits": ["Unified attribution setup", "Cross-channel campaign design", "Weekly optimisation cycles", "Executive-ready reporting"],
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=80",
+      "imageAlt": "Analytics dashboard on screen",
+      "ctaLabel": "Book a growth audit"
+    },
+    {
+      "id": "feat-3",
+      "eyebrow": "Featured — Websites",
+      "title": "Marketing sites that earn their traffic.",
+      "description": "Fast, accessible, thoughtfully designed sites — with the analytics and content ops to keep them alive after launch.",
+      "benefits": ["Content-led IA", "Design system in code", "Core Web Vitals green", "CMS your team can run"],
+      "image": "https://images.unsplash.com/photo-1481487196290-c152efe083f5?auto=format&fit=crop&w=1400&q=80",
+      "imageAlt": "Designer working on a website layout",
+      "ctaLabel": "Scope a new site"
+    }
+  ],
+  "projects": [
+    {
+      "id": "prj-1",
+      "title": "Rewriting the category for a modern skincare brand",
+      "client": "Halcyon Skin",
+      "industry": "Beauty & Wellness",
+      "coverImage": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1400&q=80",
+      "challenge": "A cluttered category with no clear voice and stalling repeat orders.",
+      "solution": "Rebuilt the brand around a single editorial idea and rewired the funnel to match.",
+      "results": ["+218% organic traffic", "+64% repeat purchase", "3.9x return on ad spend"],
+      "tags": ["Branding", "SEO", "Paid"]
+    },
+    {
+      "id": "prj-2",
+      "title": "A B2B rebrand that finally sounded like the team",
+      "client": "Meridian Data",
+      "industry": "SaaS",
+      "coverImage": "https://images.unsplash.com/photo-1554774853-aae0a22c8aa4?auto=format&fit=crop&w=1400&q=80",
+      "challenge": "A confident engineering team hidden behind generic B2B messaging.",
+      "solution": "New positioning, identity system and website launched in ten weeks.",
+      "results": ["2.4x qualified pipeline", "+38% conversion on demo page", "Series B raised"],
+      "tags": ["Branding", "Web"]
+    },
+    {
+      "id": "prj-3",
+      "title": "Turning a local roaster into a national favourite",
+      "client": "Foundry Coffee",
+      "industry": "F&B / DTC",
+      "coverImage": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80",
+      "challenge": "Great product, thin margins, no content engine.",
+      "solution": "Content and social pipeline plus a subscription-first shop redesign.",
+      "results": ["+412% subscribers", "+52% AOV", "Featured in three national titles"],
+      "tags": ["Content", "Social", "Web"]
+    },
+    {
+      "id": "prj-4",
+      "title": "Scaling paid without breaking the brand",
+      "client": "Northwind Travel",
+      "industry": "Travel",
+      "coverImage": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1400&q=80",
+      "challenge": "Aggressive paid targets threatening a carefully-built brand voice.",
+      "solution": "Modular creative system letting performance test without eroding identity.",
+      "results": ["-31% CPA", "+2.1x bookings", "Brand recall up 22%"],
+      "tags": ["Paid", "Branding"]
+    }
+  ],
+  "gallery": [
+    { "id": "g1", "src": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1400&q=80", "alt": "Strategy workshop with the team" },
+    { "id": "g2", "src": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1400&q=80", "alt": "Client presentation" },
+    { "id": "g3", "src": "https://images.unsplash.com/photo-1531973576160-7125cd663d86?auto=format&fit=crop&w=1400&q=80", "alt": "Creative direction meeting" },
+    { "id": "g4", "src": "https://images.unsplash.com/photo-1519337265831-281ec6cc8514?auto=format&fit=crop&w=1400&q=80", "alt": "Designer at work" },
+    { "id": "g5", "src": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1400&q=80", "alt": "Team retrospective" },
+    { "id": "g6", "src": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1400&q=80", "alt": "Whiteboard planning session" },
+    { "id": "g7", "src": "https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=1400&q=80", "alt": "Workspace overview" },
+    { "id": "g8", "src": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=80", "alt": "Team celebration" }
+  ],
+  "whyChooseUs": {
+    "eyebrow": "Why teams choose us",
+    "heading": "A studio that behaves like part of your team.",
+    "description": "Small enough to move fast. Senior enough to know what actually matters.",
+    "items": [
+      { "title": "Senior-led, always", "description": "You work directly with the people doing the work. No layers, no juniors handed the account.", "icon": "Users" },
+      { "title": "One integrated team", "description": "Brand, content, SEO and paid under one roof — so nothing gets lost between agencies.", "icon": "Layers" },
+      { "title": "Fixed, transparent pricing", "description": "Every service is €50. Every package price is on this page. No mystery scoping.", "icon": "Receipt" },
+      { "title": "Measurable from day one", "description": "We set the metrics that matter with you, and report on them honestly every month.", "icon": "LineChart" }
+    ]
+  },
+  "pricing": {
+    "currency": "EUR",
+    "currencySymbol": "€",
+    "individual": {
+      "title": "Individual service",
+      "description": "Pick just what you need. Every service, one flat rate.",
+      "price": 50,
+      "features": ["Any single service from our list", "Senior-led delivery", "Two rounds of revisions", "Delivered within two weeks"]
+    },
+    "package": {
+      "title": "The Ten Piece Package",
+      "description": "All six services, working together as one system.",
+      "regularPrice": 300,
+      "price": 270,
+      "savings": 30,
+      "badge": "Best value",
+      "features": [
+        "All six services included",
+        "Unified strategy across every channel",
+        "Priority delivery timeline",
+        "Dedicated project lead",
+        "You save €30 vs individual pricing"
+      ]
+    }
+  },
+  "testimonials": [
+    { "id": "t1", "name": "Elena Marquez", "role": "Head of Brand", "company": "Halcyon Skin", "photo": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80", "rating": 5, "quote": "Ten Piece rebuilt our brand and our funnel in the same quarter — and both are still paying off two years later." },
+    { "id": "t2", "name": "Marcus Bell", "role": "CEO", "company": "Meridian Data", "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80", "rating": 5, "quote": "The most honest agency I've worked with. They killed two of my worst ideas in the first week. Best money I've ever spent." },
+    { "id": "t3", "name": "Priya Shah", "role": "Founder", "company": "Foundry Coffee", "photo": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80", "rating": 5, "quote": "They treat our tiny brand like a Fortune 500 client. Every deliverable feels considered." },
+    { "id": "t4", "name": "Jonas Weber", "role": "VP Marketing", "company": "Northwind Travel", "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80", "rating": 5, "quote": "Rare combination of taste and rigour. Our paid programme has never been healthier." },
+    { "id": "t5", "name": "Sofia Rinaldi", "role": "COO", "company": "Atlas & Co", "photo": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80", "rating": 5, "quote": "Ten people that operate like fifty. Every meeting is prepared, every deliverable is on time." }
+  ],
+  "faqs": [
+    { "id": "f1", "question": "How does the €50 pricing actually work?", "answer": "Each of our six services is offered at a fixed €50 rate for a defined scope of work. If you bundle all six, the package price is €270 — a €30 saving over buying each individually." },
+    { "id": "f2", "question": "Who will I actually work with?", "answer": "You'll work directly with senior members of our ten-person studio. No account managers between you and the people doing the work." },
+    { "id": "f3", "question": "How long does a typical project take?", "answer": "Individual services are delivered within two weeks. The full package runs on a coordinated six-to-eight-week schedule." },
+    { "id": "f4", "question": "What industries do you specialise in?", "answer": "We've done our strongest work in SaaS, DTC, hospitality and wellness — but we take on any category where craft and clarity matter." },
+    { "id": "f5", "question": "Do you offer ongoing retainers?", "answer": "Yes. After a first project we often move clients onto a monthly retainer scoped around their goals." },
+    { "id": "f6", "question": "Can I order just one service?", "answer": "Absolutely. Every service is designed to stand alone at €50, though most clients get compounding value from combining several." },
+    { "id": "f7", "question": "What's your revision policy?", "answer": "Two rounds of revisions are included in every service. Additional rounds are scoped transparently." },
+    { "id": "f8", "question": "How do I get started?", "answer": "Use the Start a project button. Pick your services, tell us about your business, and we'll be in touch within one working day." }
+  ],
+  "finalCta": {
+    "eyebrow": "Ready when you are",
+    "heading": "Let's make something worth remembering.",
+    "description": "Every project starts with a short conversation. No pitch decks, no pressure — just a look at whether we're the right studio for you.",
+    "primaryCta": { "label": "Start a project", "action": "order" },
+    "secondaryCta": { "label": "Say hello", "action": "scroll", "target": "contact" }
+  },
+  "contact": {
+    "eyebrow": "Get in touch",
+    "heading": "Tell us what you're building.",
+    "description": "Send us a note about your project, your goals and your timeline. We'll reply within one working day with next steps.",
+    "email": "hello@tenpiece.studio",
+    "phone": "+31 20 555 0140",
+    "address": "Prinsengracht 500, Amsterdam",
+    "hours": "Mon – Fri, 09:00 – 18:00 CET"
+  },
+  "footer": {
+    "tagline": "An independent ten-person studio building brands and the systems that grow them.",
+    "columns": [
+      {
+        "title": "Studio",
+        "links": [
+          { "label": "Work", "href": "#portfolio" },
+          { "label": "About", "href": "#about" },
+          { "label": "Contact", "href": "#contact" }
+        ]
+      },
+      {
+        "title": "Services",
+        "links": [
+          { "label": "Branding", "href": "#services" },
+          { "label": "Web design", "href": "#services" },
+          { "label": "SEO", "href": "#services" },
+          { "label": "Paid ads", "href": "#services" },
+          { "label": "Content", "href": "#services" },
+          { "label": "Social", "href": "#services" }
+        ]
+      }
+    ],
+    "legalLinks": [
+      { "label": "Privacy Policy", "href": "#" },
+      { "label": "Terms", "href": "#" }
+    ],
+    "copyright": "© 2026 Ten Piece Marketing Agency. All rights reserved."
+  },
+  "paymentMethods": [
+    { "id": "card", "label": "Credit / Debit card", "description": "Visa, Mastercard, Amex", "icon": "CreditCard" },
+    { "id": "paypal", "label": "PayPal", "description": "Pay with your PayPal balance", "icon": "Wallet" },
+    { "id": "apple", "label": "Apple Pay", "description": "Face ID or Touch ID", "icon": "Apple" },
+    { "id": "google", "label": "Google Pay", "description": "One-tap checkout", "icon": "Smartphone" },
+    { "id": "bank", "label": "Bank transfer", "description": "SEPA / IBAN, 1–2 business days", "icon": "Landmark" }
+  ]
+}
