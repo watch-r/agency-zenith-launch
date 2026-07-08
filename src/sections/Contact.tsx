@@ -24,13 +24,13 @@ import { Controller } from "react-hook-form";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Please tell us your name").max(80),
-  company: z.string().trim().max(120).optional().default(""),
+  company: z.string().trim().max(120),
   email: z.string().trim().email("Enter a valid email").max(160),
   phone: z.string().trim().min(3, "Add a phone number").max(40),
   service: z.string().min(1, "Pick a service"),
   budget: z.string().min(1, "Pick a budget"),
   message: z.string().trim().min(10, "A short brief helps").max(1200),
-});
+}) satisfies z.ZodType<ContactFormPayload>;
 
 const budgets = ["< €500", "€500 – €1,000", "€1,000 – €3,000", "€3,000+"];
 
