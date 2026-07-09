@@ -55,21 +55,22 @@
   --color-brand: var(--brand);
   --color-brand-soft: var(--brand-soft);
 
-  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-display: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 :root {
-  --radius: 0.75rem;
+  --radius: 0.5rem;
 
-  /* Warm minimal palette */
-  --canvas: oklch(0.985 0.006 85);        /* #f7f5f1 warm off-white */
-  --canvas-warm: oklch(0.965 0.012 82);   /* slightly deeper cream */
-  --ink: oklch(0.16 0.01 260);            /* near-black */
-  --ink-soft: oklch(0.36 0.012 260);      /* softened body ink */
-  --hairline: oklch(0.88 0.008 85);       /* warm border */
-  --brand: oklch(0.72 0.13 76);           /* muted gold accent */
-  --brand-soft: oklch(0.92 0.06 82);
+  /* Neutral minimal palette — pure grayscale */
+  --canvas: oklch(1 0 0);                 /* white */
+  --canvas-warm: oklch(0.975 0 0);        /* faint gray surface */
+  --ink: oklch(0.15 0 0);                 /* near-black */
+  --ink-soft: oklch(0.45 0 0);            /* body gray */
+  --hairline: oklch(0.9 0 0);             /* neutral border */
+  --brand: oklch(0.15 0 0);               /* accent = ink */
+  --brand-soft: oklch(0.95 0 0);
+
 
   --background: var(--canvas);
   --foreground: var(--ink);
