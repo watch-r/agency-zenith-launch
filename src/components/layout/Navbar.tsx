@@ -1,5 +1,5 @@
-import { Container } from "@/components/layout/Container";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import { Logo } from "@/components/common/Logo";
 import { Button } from "@/components/ui/button";
 import { useOrder } from "@/hooks/use-order";
 import { site } from "@/services/data";
@@ -9,53 +9,65 @@ import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export function Navbar() {
-  const { agency, navigation } = site;
+  const { navigation } = site;
   const { open } = useOrder();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Filter out pricing (folded into services)
+  const nav = navigation.filter((n) => n.href !== "#pricing");
+
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-40 transition-all",
-        scrolled
-          ? "border-b border-border/60 bg-background/80 backdrop-blur-md"
-          : "border-b border-transparent",
-      )}
+    <motion.header
+      initial={{ y: -30, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-3 md:pt-5"
     >
-      <Container className="grid grid-cols-[auto_1fr_auto] items-center gap-4 py-4">
-        <a href="#top" className="flex items-center gap-2">
-          <span className="grid h-9 w-9 place-items-center rounded-full bg-foreground text-background font-display text-sm">
-            {agency.logoMark}
-          </span>
-          <span className="hidden font-display text-lg tracking-tight sm:inline">
-            {agency.shortName}
+      <div
+        className={cn(
+          "flex items-center gap-2 rounded-full border border-border/60 bg-background/70 py-2 pl-2 pr-2 backdrop-blur-xl transition-all duration-500 md:gap-4 md:pl-3",
+          scrolled
+            ? "shadow-[0_10px_40px_-10px_rgba(7,72,159,0.25)] border-border"
+            : "shadow-[0_4px_20px_-8px_rgba(7,72,159,0.15)]",
+        )}
+      >
+        <a
+          href="#top"
+          className="flex items-center gap-2 rounded-full py-1 pl-1 pr-3 transition-colors hover:bg-secondary/60"
+        >
+          <Logo size={28} />
+          <span className="hidden font-display text-sm font-semibold tracking-tight sm:inline">
+            Ten Piece
           </span>
         </a>
 
-        <nav className="hidden justify-center gap-8 text-sm text-muted-foreground md:flex">
-          {navigation.map((n) => (
+        <span className="hidden h-6 w-px bg-border md:inline-block" />
+
+        <nav className="hidden items-center gap-1 md:flex">
+          {nav.map((n) => (
             <a
               key={n.href}
               href={n.href}
-              className="relative transition-colors hover:text-foreground"
+              className="rounded-full px-3.5 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
             >
               {n.label}
             </a>
           ))}
         </nav>
 
-        <div className="flex items-center gap-1 justify-self-end">
+        <div className="flex items-center gap-1">
           <ThemeToggle />
           <Button
-            className="hidden rounded-full sm:inline-flex"
+            className="hidden rounded-full gradient-brand text-white hover:opacity-90 sm:inline-flex"
+            size="sm"
             onClick={() => open()}
           >
             Start a project
@@ -63,14 +75,14 @@ export function Navbar() {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden"
+            className="rounded-full md:hidden"
             onClick={() => setMobileOpen((v) => !v)}
             aria-label="Toggle menu"
           >
             {mobileOpen ? <X size={18} /> : <Menu size={18} />}
           </Button>
         </div>
-      </Container>
+      </div>
 
       <AnimatePresence>
         {mobileOpen && (
@@ -78,21 +90,21 @@ export function Navbar() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="md:hidden border-t border-border/60 bg-background"
+            className="absolute inset-x-4 top-full mt-2 rounded-3xl border border-border bg-background/95 p-3 backdrop-blur-xl shadow-xl md:hidden"
           >
-            <Container className="flex flex-col gap-2 py-4">
-              {navigation.map((n) => (
+            <div className="flex flex-col gap-1">
+              {nav.map((n) => (
                 <a
                   key={n.href}
                   href={n.href}
-                  className="rounded-lg px-3 py-2 text-sm hover:bg-secondary"
+                  className="rounded-2xl px-4 py-2.5 text-sm hover:bg-secondary"
                   onClick={() => setMobileOpen(false)}
                 >
                   {n.label}
                 </a>
               ))}
               <Button
-                className="mt-2 rounded-full"
+                className="mt-2 rounded-full gradient-brand text-white"
                 onClick={() => {
                   setMobileOpen(false);
                   open();
@@ -100,10 +112,10 @@ export function Navbar() {
               >
                 Start a project
               </Button>
-            </Container>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }

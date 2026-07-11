@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { FloatingWhatsApp } from "@/components/common/FloatingWhatsApp";
 import { Hero } from "@/sections/Hero";
 import { About } from "@/sections/About";
 import { Services } from "@/sections/Services";
 import { Portfolio } from "@/sections/Portfolio";
-import { Pricing } from "@/sections/Pricing";
 import { Testimonials } from "@/sections/Testimonials";
 import { FAQ } from "@/sections/FAQ";
 import { Contact } from "@/sections/Contact";
@@ -23,12 +23,12 @@ function Index() {
         <About />
         <Services />
         <Portfolio />
-        <Pricing />
         <Testimonials />
         <FAQ />
         <Contact />
       </main>
       <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 }
