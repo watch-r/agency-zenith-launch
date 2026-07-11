@@ -1,20 +1,17 @@
 import { Container } from "@/components/layout/Container";
 import { Icon } from "@/components/common/Icon";
+import { Logo } from "@/components/common/Logo";
 import { site } from "@/services/data";
 
 export function Footer() {
-  const { agency, footer, socials } = site;
+  const { footer, socials } = site;
   return (
     <footer className="border-t border-border/60 bg-background">
       <Container className="py-16">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div className="max-w-sm">
-            <div className="flex items-center gap-2">
-              <span className="grid h-9 w-9 place-items-center rounded-full bg-foreground text-background font-display text-sm">
-                {agency.logoMark}
-              </span>
-              <span className="font-display text-lg">{agency.shortName}</span>
-            </div>
+            <Logo size={36} showWordmark />
+
             <p className="mt-4 text-sm text-muted-foreground">{footer.tagline}</p>
             <div className="mt-6 flex items-center gap-2">
               {socials.map((s) => (
