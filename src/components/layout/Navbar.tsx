@@ -21,8 +21,8 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Filter out pricing (folded into services)
-  const nav = navigation.filter((n) => n.href !== "#pricing");
+  // Show only in-page nav; legal pages live in the footer
+  const nav = navigation.filter((n) => n.href.startsWith("#"));
 
   return (
     <motion.header
