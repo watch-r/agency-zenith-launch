@@ -29,6 +29,12 @@ export interface TrustedByItem {
   logoText: string;
 }
 
+export interface HeroGalleryImage {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
 export interface HeroContent {
   eyebrow: string;
   headline: string;
@@ -38,6 +44,7 @@ export interface HeroContent {
   secondaryCta: { label: string; action: "order" | "scroll"; target?: string };
   image: string;
   imageAlt: string;
+  gallery: HeroGalleryImage[];
 }
 
 export interface AboutValue {

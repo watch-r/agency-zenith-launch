@@ -7,10 +7,9 @@
     "yearFounded": 2019
   },
   "navigation": [
-    { "label": "Work", "href": "#portfolio" },
-    { "label": "Services", "href": "#services" },
     { "label": "About", "href": "#about" },
-    { "label": "Pricing", "href": "#pricing" },
+    { "label": "Services", "href": "#services" },
+    { "label": "Work", "href": "#portfolio" },
     { "label": "Contact", "href": "#contact" }
   ],
   "socials": [
@@ -23,11 +22,19 @@
     "eyebrow": "Independent creative studio",
     "headline": "Craft brands people",
     "headlineAccent": "actually remember.",
-    "description": "We're a ten-piece team of strategists, designers and marketers helping ambitious brands grow through work that's beautifully built and quietly effective.",
+    "description": "A ten-piece team of strategists, designers and marketers building brands that are beautifully made and quietly effective.",
     "primaryCta": { "label": "Start a project", "action": "order" },
     "secondaryCta": { "label": "See our work", "action": "scroll", "target": "portfolio" },
     "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80",
-    "imageAlt": "Creative team collaborating around a table"
+    "imageAlt": "Creative team collaborating around a table",
+    "gallery": [
+      { "src": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=85", "alt": "Team collaborating around a table", "caption": "Studio · Amsterdam" },
+      { "src": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=85", "alt": "Bright studio workspace", "caption": "Brand systems" },
+      { "src": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1600&q=85", "alt": "Client presentation", "caption": "Strategy sessions" },
+      { "src": "https://images.unsplash.com/photo-1531973576160-7125cd663d86?auto=format&fit=crop&w=1600&q=85", "alt": "Creative direction meeting", "caption": "Creative direction" },
+      { "src": "https://images.unsplash.com/photo-1519337265831-281ec6cc8514?auto=format&fit=crop&w=1600&q=85", "alt": "Designer at work", "caption": "Craft first" },
+      { "src": "https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=1600&q=85", "alt": "Workspace overview", "caption": "Where it happens" }
+    ]
   },
   "trustedBy": {
     "eyebrow": "Trusted by teams at",
@@ -293,8 +300,8 @@
       {
         "title": "Studio",
         "links": [
-          { "label": "Work", "href": "#portfolio" },
           { "label": "About", "href": "#about" },
+          { "label": "Work", "href": "#portfolio" },
           { "label": "Contact", "href": "#contact" }
         ]
       },
@@ -308,19 +315,27 @@
           { "label": "Content", "href": "#services" },
           { "label": "Social", "href": "#services" }
         ]
+      },
+      {
+        "title": "Legal",
+        "links": [
+          { "label": "Privacy", "href": "/privacy" },
+          { "label": "Terms", "href": "/terms" },
+          { "label": "Cookies", "href": "/privacy#cookies" }
+        ]
       }
     ],
     "legalLinks": [
-      { "label": "Privacy Policy", "href": "#" },
-      { "label": "Terms", "href": "#" }
+      { "label": "Privacy Policy", "href": "/privacy" },
+      { "label": "Terms of Service", "href": "/terms" }
     ],
     "copyright": "© 2026 Ten Piece Marketing Agency. All rights reserved."
   },
   "paymentMethods": [
-    { "id": "card", "label": "Credit / Debit card", "description": "Visa, Mastercard, Amex", "icon": "CreditCard" },
-    { "id": "paypal", "label": "PayPal", "description": "Pay with your PayPal balance", "icon": "Wallet" },
-    { "id": "apple", "label": "Apple Pay", "description": "Face ID or Touch ID", "icon": "Apple" },
-    { "id": "google", "label": "Google Pay", "description": "One-tap checkout", "icon": "Smartphone" },
-    { "id": "bank", "label": "Bank transfer", "description": "SEPA / IBAN, 1–2 business days", "icon": "Landmark" }
+    { "id": "card", "label": "Credit / Debit card", "description": "Visa, Mastercard, Amex — encrypted end-to-end.", "icon": "CreditCard" },
+    { "id": "revolut", "label": "Revolut Bank Portal", "description": "Instant SEPA transfer via secure Revolut checkout.", "icon": "Landmark" },
+    { "id": "paypal", "label": "PayPal", "description": "Pay with your PayPal balance or linked card.", "icon": "Wallet" },
+    { "id": "apple", "label": "Apple Pay", "description": "Face ID or Touch ID, no card details shared.", "icon": "Apple" },
+    { "id": "bank", "label": "Bank transfer", "description": "SEPA / IBAN, 1–2 business days.", "icon": "Building2" }
   ]
 }
