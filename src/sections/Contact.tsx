@@ -1,6 +1,5 @@
 import { Container } from "@/components/layout/Container";
 import { Reveal } from "@/components/common/Reveal";
-import { Icon } from "@/components/common/Icon";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -35,7 +34,7 @@ const schema = z.object({
 const budgets = ["< €500", "€500 – €1,000", "€1,000 – €3,000", "€3,000+"];
 
 export function Contact() {
-  const { contact, services, socials } = site;
+  const { contact, services } = site;
   const [sent, setSent] = useState(false);
 
   const {
@@ -65,39 +64,31 @@ export function Contact() {
 
   const contactCards = [
     {
-      icon: <Mail size={18} />,
+      icon: <Mail size={16} />,
       label: "Email",
       value: contact.email,
       href: `mailto:${contact.email}`,
-      tone: "from-brand-light to-brand-soft",
-      accent: "text-brand-deep",
     },
     {
-      icon: <Phone size={18} />,
+      icon: <Phone size={16} />,
       label: "Phone",
       value: contact.phone,
       href: `tel:${contact.phone.replace(/\s/g, "")}`,
-      tone: "from-brand/20 to-brand-light",
-      accent: "text-brand-deep",
     },
     {
-      icon: <MapPin size={18} />,
+      icon: <MapPin size={16} />,
       label: "Studio",
       value: contact.address,
-      tone: "from-brand-soft to-brand-light",
-      accent: "text-brand-deep",
     },
     {
-      icon: <Clock size={18} />,
+      icon: <Clock size={16} />,
       label: "Hours",
       value: contact.hours,
-      tone: "from-brand-light to-brand/10",
-      accent: "text-brand-deep",
     },
   ];
 
   return (
-    <section id="contact" className="relative py-24 md:py-32 overflow-hidden">
+    <section id="contact" className="relative overflow-hidden py-24 md:py-32">
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div className="absolute -top-40 right-0 h-[30rem] w-[30rem] rounded-full bg-brand-light/40 blur-3xl" />
       </div>
@@ -106,7 +97,8 @@ export function Contact() {
         <div className="grid gap-12 md:grid-cols-2 md:gap-16">
           <div>
             <Reveal>
-              <span className="text-xs uppercase tracking-[0.22em] text-brand-deep">
+              <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-brand-deep">
+                <span className="h-px w-8 bg-brand-deep/30" />
                 {contact.eyebrow}
               </span>
             </Reveal>
@@ -122,49 +114,28 @@ export function Contact() {
               </p>
             </Reveal>
 
-            {/* Layered colored cards */}
-            <div className="mt-10 grid gap-3 sm:grid-cols-2">
+            {/* Aligned equal-height cards */}
+            <div className="mt-10 grid auto-rows-fr gap-3 sm:grid-cols-2">
               {contactCards.map((c, i) => (
                 <Reveal key={c.label} delay={0.05 * i}>
-                  <LayeredCard {...c} />
+                  <ContactCard {...c} />
                 </Reveal>
               ))}
-            </div>
-
-            <div className="mt-10">
-              <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
-                Follow
-              </div>
-              <div className="mt-3 flex items-center gap-2">
-                {socials.map((s) => (
-                  <a
-                    key={s.platform}
-                    href={s.href}
-                    aria-label={s.label}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="grid h-10 w-10 place-items-center rounded-full border border-border bg-background text-brand-deep transition-all hover:scale-110 hover:border-brand hover:shadow-md hover:shadow-brand/20"
-                  >
-                    <Icon name={s.icon} size={16} />
-                  </a>
-                ))}
-              </div>
             </div>
           </div>
 
           <Reveal delay={0.15}>
             <div className="relative">
-              {/* Layered background shadows */}
-              <div className="absolute -inset-2 rounded-[2.25rem] bg-gradient-to-br from-brand/20 via-brand-light/40 to-transparent blur-2xl" />
-              <div className="absolute -top-3 -left-3 h-full w-full rounded-[2rem] gradient-brand opacity-30" />
-              <div className="absolute -bottom-3 -right-3 h-full w-full rounded-[2rem] border-2 border-brand-deep/20" />
+              {/* Layered background */}
+              <div className="absolute -inset-2 rounded-[2.25rem] bg-gradient-to-br from-brand/15 via-brand-light/30 to-transparent blur-2xl" />
+              <div className="absolute -bottom-3 -right-3 h-full w-full rounded-[2rem] border border-brand-deep/15 bg-brand-light/25" />
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="relative rounded-[2rem] border border-border bg-card p-6 shadow-2xl shadow-brand-deep/10 sm:p-8"
+                className="relative rounded-[2rem] border border-border bg-card p-6 elev-3 sm:p-8"
               >
                 {sent ? (
                   <div className="flex flex-col items-center py-16 text-center">
-                    <span className="grid h-16 w-16 place-items-center rounded-full gradient-brand text-white shadow-xl shadow-brand/30">
+                    <span className="grid h-16 w-16 place-items-center rounded-full gradient-brand text-white elev-3">
                       <Check size={26} />
                     </span>
                     <h3 className="font-display mt-5 text-2xl">Message received.</h3>
@@ -240,7 +211,7 @@ export function Contact() {
                       <Button
                         type="submit"
                         size="lg"
-                        className="w-full rounded-full gradient-brand text-white hover:opacity-90 sm:w-auto group"
+                        className="group w-full rounded-full gradient-brand text-white hover:opacity-90 elev-2 sm:w-auto"
                         disabled={isSubmitting}
                       >
                         {isSubmitting ? "Sending…" : "Send message"}
@@ -261,36 +232,32 @@ export function Contact() {
   );
 }
 
-function LayeredCard({
+function ContactCard({
   icon,
   label,
   value,
   href,
-  tone,
-  accent,
 }: {
   icon: React.ReactNode;
   label: string;
   value: string;
   href?: string;
-  tone: string;
-  accent: string;
 }) {
   const Wrapper: React.ElementType = href ? "a" : "div";
   return (
     <Wrapper
       {...(href ? { href } : {})}
-      className={`group relative block overflow-hidden rounded-2xl bg-gradient-to-br ${tone} p-5 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-brand-deep/15`}
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card p-5 elev-1 transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:elev-3"
     >
-      <div className="absolute -right-4 -top-4 h-20 w-20 rounded-full bg-white/40 blur-2xl transition-all duration-500 group-hover:scale-150" />
-      <div className="relative">
-        <span className={`inline-grid h-11 w-11 place-items-center rounded-xl bg-white/90 ${accent} shadow-sm`}>
+      <div className="absolute -right-6 -top-6 h-20 w-20 rounded-full bg-brand-light/60 blur-2xl transition-transform duration-500 group-hover:scale-150" />
+      <div className="relative flex h-full flex-col">
+        <span className="inline-grid h-10 w-10 place-items-center rounded-xl bg-brand-light text-brand-deep">
           {icon}
         </span>
-        <div className="mt-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-deep/70">
+        <div className="mt-4 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
           {label}
         </div>
-        <div className="mt-1 text-sm font-semibold text-brand-deep">{value}</div>
+        <div className="mt-1 text-sm font-semibold text-foreground">{value}</div>
       </div>
     </Wrapper>
   );
