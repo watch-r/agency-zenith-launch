@@ -51,6 +51,8 @@
   --color-ink-soft: var(--ink-soft);
   --color-canvas: var(--canvas);
   --color-canvas-warm: var(--canvas-warm);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
   --color-hairline: var(--hairline);
   --color-brand: var(--brand);
   --color-brand-soft: var(--brand-soft);
@@ -62,24 +64,26 @@
 }
 
 :root {
-  --radius: 0.75rem;
+  --radius: 0.85rem;
 
   /* Ten Piece brand blues */
-  --canvas: oklch(0.99 0.005 240);              /* near-white with cool tint */
-  --canvas-warm: oklch(0.965 0.012 240);        /* very soft blue-tinted surface */
-  --ink: oklch(0.22 0.06 258);                  /* deep navy for text */
-  --ink-soft: oklch(0.5 0.03 258);              /* body */
+  --canvas: oklch(0.985 0.006 240);
+  --canvas-warm: oklch(0.955 0.014 240);
+  --surface: oklch(1 0 0);
+  --surface-raised: oklch(1 0 0);
+  --ink: oklch(0.22 0.06 258);
+  --ink-soft: oklch(0.5 0.03 258);
   --hairline: oklch(0.9 0.02 240);
-  --brand: oklch(0.68 0.16 240);                /* #25afff bright azure */
-  --brand-deep: oklch(0.4 0.16 258);            /* #07489f deep navy blue */
-  --brand-light: oklch(0.92 0.05 240);          /* pale sky */
-  --brand-soft: oklch(0.96 0.03 240);
+  --brand: oklch(0.68 0.16 240);
+  --brand-deep: oklch(0.4 0.16 258);
+  --brand-light: oklch(0.92 0.05 240);
+  --brand-soft: oklch(0.965 0.03 240);
 
   --background: var(--canvas);
   --foreground: var(--ink);
-  --card: oklch(1 0 0);
+  --card: var(--surface);
   --card-foreground: var(--ink);
-  --popover: oklch(1 0 0);
+  --popover: var(--surface);
   --popover-foreground: var(--ink);
   --primary: var(--brand-deep);
   --primary-foreground: oklch(0.99 0 0);
@@ -107,28 +111,37 @@
   --sidebar-accent-foreground: var(--ink);
   --sidebar-border: var(--hairline);
   --sidebar-ring: var(--brand);
+
+  /* Elevation system (layered shadows for depth) */
+  --elev-1: 0 1px 2px rgba(7, 72, 159, 0.06), 0 2px 6px rgba(7, 72, 159, 0.05);
+  --elev-2: 0 4px 10px -3px rgba(7, 72, 159, 0.09), 0 12px 28px -12px rgba(7, 72, 159, 0.15);
+  --elev-3: 0 8px 20px -6px rgba(7, 72, 159, 0.12), 0 24px 60px -20px rgba(7, 72, 159, 0.22);
+  --elev-4: 0 12px 30px -8px rgba(7, 72, 159, 0.16), 0 40px 90px -25px rgba(7, 72, 159, 0.35);
+  --inset-field: inset 0 1px 2px rgba(7, 72, 159, 0.10), inset 0 2px 6px -2px rgba(7, 72, 159, 0.06);
 }
 
 .dark {
-  --canvas: oklch(0.16 0.03 258);
-  --canvas-warm: oklch(0.22 0.04 258);
+  --canvas: oklch(0.16 0.02 258);
+  --canvas-warm: oklch(0.20 0.03 258);
+  --surface: oklch(0.22 0.03 258);
+  --surface-raised: oklch(0.26 0.035 258);
   --ink: oklch(0.98 0 0);
   --ink-soft: oklch(0.72 0.02 240);
-  --hairline: oklch(0.32 0.04 258);
-  --brand: oklch(0.72 0.16 240);
-  --brand-deep: oklch(0.55 0.18 250);
-  --brand-light: oklch(0.32 0.09 250);
-  --brand-soft: oklch(0.26 0.06 250);
+  --hairline: oklch(0.34 0.04 258);
+  --brand: oklch(0.75 0.16 240);
+  --brand-deep: oklch(0.6 0.18 250);
+  --brand-light: oklch(0.36 0.09 250);
+  --brand-soft: oklch(0.28 0.06 250);
 
   --background: var(--canvas);
   --foreground: var(--ink);
-  --card: oklch(0.2 0.03 258);
+  --card: var(--surface);
   --card-foreground: var(--ink);
-  --popover: oklch(0.2 0.03 258);
+  --popover: var(--surface);
   --popover-foreground: var(--ink);
   --primary: var(--brand);
   --primary-foreground: oklch(0.14 0.04 258);
-  --secondary: oklch(0.24 0.04 258);
+  --secondary: oklch(0.26 0.04 258);
   --secondary-foreground: var(--ink);
   --muted: oklch(0.24 0.04 258);
   --muted-foreground: var(--ink-soft);
@@ -147,6 +160,12 @@
   --sidebar-accent-foreground: var(--ink);
   --sidebar-border: var(--hairline);
   --sidebar-ring: var(--brand);
+
+  --elev-1: 0 1px 2px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3);
+  --elev-2: 0 4px 10px -3px rgba(0, 0, 0, 0.5), 0 12px 28px -12px rgba(0, 0, 0, 0.55);
+  --elev-3: 0 8px 20px -6px rgba(0, 0, 0, 0.55), 0 24px 60px -20px rgba(0, 0, 0, 0.6);
+  --elev-4: 0 12px 30px -8px rgba(0, 0, 0, 0.6), 0 40px 90px -25px rgba(0, 0, 0, 0.75);
+  --inset-field: inset 0 1px 2px rgba(0, 0, 0, 0.5), inset 0 2px 6px -2px rgba(0, 0, 0, 0.35);
 }
 
 @layer base {
@@ -173,7 +192,33 @@
     background: var(--color-brand);
     color: oklch(0.99 0 0);
   }
+
+  /* Field inputs — pressed-in feel */
+  input:not([type="checkbox"]):not([type="radio"]),
+  textarea,
+  select,
+  [data-slot="input"],
+  [data-slot="textarea"],
+  [data-slot="select-trigger"] {
+    box-shadow: var(--inset-field);
+    background-color: var(--color-canvas-warm);
+  }
+  .dark input:not([type="checkbox"]):not([type="radio"]),
+  .dark textarea,
+  .dark select,
+  .dark [data-slot="input"],
+  .dark [data-slot="textarea"],
+  .dark [data-slot="select-trigger"] {
+    background-color: oklch(0.14 0.03 258);
+    border-color: var(--color-hairline);
+  }
 }
+
+@utility elev-1 { box-shadow: var(--elev-1); }
+@utility elev-2 { box-shadow: var(--elev-2); }
+@utility elev-3 { box-shadow: var(--elev-3); }
+@utility elev-4 { box-shadow: var(--elev-4); }
+@utility field-inset { box-shadow: var(--inset-field); }
 
 @utility marquee-track {
   animation: marquee 42s linear infinite;
@@ -186,6 +231,10 @@
 
 @utility gradient-brand {
   background-image: linear-gradient(135deg, #25afff 0%, #07489f 100%);
+}
+
+@utility gradient-brand-soft {
+  background-image: linear-gradient(135deg, #e8f5ff 0%, #cfe6ff 100%);
 }
 
 @utility text-gradient-brand {
@@ -218,4 +267,18 @@
 @utility animate-shimmer {
   background-size: 200% 100%;
   animation: shimmer 3s linear infinite;
+}
+
+@keyframes marquee-y {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+@utility marquee-y-track {
+  animation: marquee-y 40s linear infinite;
+}
+@utility marquee-y-track-slow {
+  animation: marquee-y 60s linear infinite;
+}
+@utility marquee-y-track-reverse {
+  animation: marquee-y 50s linear infinite reverse;
 }
