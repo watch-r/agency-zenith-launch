@@ -6,19 +6,26 @@ import { Button } from "@/components/ui/button";
 import { useOrder } from "@/hooks/use-order";
 import { site } from "@/services/data";
 import { formatCurrency } from "@/lib/format";
-import { motion } from "framer-motion";
-import { ArrowUpRight, Check, Sparkles } from "lucide-react";
-import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight, Check, Plus, ShoppingBag, Sparkles, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import type { Service } from "@/types";
 
 export function Services() {
   const { services, pricing } = site;
-  const { open } = useOrder();
-  const [hovered, setHovered] = useState<string | null>(null);
+  const { cart, toggleInCart, setCart, clearCart, open, addToCart } = useOrder();
+
+  const selectedServices = services.filter((s) => cart.includes(s.id));
+  const isFullPackage = selectedServices.length === services.length;
+  const subtotal = selectedServices.reduce((sum, s) => sum + s.price, 0);
+  const total = isFullPackage ? pricing.package.price : subtotal;
+  const savings = isFullPackage ? pricing.package.savings : 0;
+
+  const selectAll = () => setCart(services.map((s) => s.id));
 
   return (
-    <section id="services" className="relative py-24 md:py-32">
-      {/* Ambient blobs */}
+    <section id="services" className="relative py-20 md:py-24">
+      {/* Ambient */}
       <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -left-40 top-20 h-96 w-96 rounded-full bg-brand-light/40 blur-3xl animate-float" />
         <div
@@ -31,65 +38,57 @@ export function Services() {
         <SectionHeading
           eyebrow="What we do"
           title="Six services. One bundle to rule them all."
-          description="Every service is a flat €50. Tap a card to see what's inside — or grab the full bundle and save."
+          description="Every service is a flat €50. Tap Add to build your bundle — grab all six and save €30."
         />
 
-        {/* BUNDLE WRAPPER — a large pill that visually contains all six services */}
+        {/* TOP BUNDLE BAR — sticky-ish CTA at the top of the section */}
         <Reveal delay={0.1}>
-          <div className="mt-14 relative">
-            <BundleFrame packagePrice={pricing.package.price} savings={pricing.package.savings}>
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {services.map((s, i) => (
-                  <ServicePill
-                    key={s.id}
-                    service={s}
-                    index={i}
-                    isHovered={hovered === s.id}
-                    onHover={setHovered}
-                    onOrder={() => open([s.id])}
-                  />
-                ))}
-              </div>
+          <BundleBar
+            selectedCount={selectedServices.length}
+            total={total}
+            savings={savings}
+            regularPrice={pricing.package.regularPrice}
+            packagePrice={pricing.package.price}
+            isFullPackage={isFullPackage}
+            onSelectAll={selectAll}
+            onCheckout={() => open()}
+            onClear={clearCart}
+            position="top"
+          />
+        </Reveal>
 
-              {/* Bundle CTA row */}
-              <div className="mt-6 flex flex-col items-stretch gap-4 rounded-3xl border border-brand-deep/20 bg-white/70 p-5 backdrop-blur-sm dark:bg-card/60 sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex items-center gap-4">
-                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl gradient-brand text-white">
-                    <Sparkles size={18} />
-                  </span>
-                  <div>
-                    <div className="text-xs uppercase tracking-[0.2em] text-brand-deep">
-                      The Ten Piece Bundle
-                    </div>
-                    <div className="font-display text-xl leading-tight mt-0.5">
-                      All six services, working as one system
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4 sm:justify-end">
-                  <div className="text-right">
-                    <div className="flex items-baseline gap-2 justify-end">
-                      <span className="text-sm text-muted-foreground line-through">
-                        {formatCurrency(pricing.package.regularPrice)}
-                      </span>
-                      <span className="font-display text-3xl text-gradient-brand font-bold">
-                        {formatCurrency(pricing.package.price)}
-                      </span>
-                    </div>
-                    <div className="text-xs font-medium text-brand-deep">
-                      Save {formatCurrency(pricing.package.savings)}
-                    </div>
-                  </div>
-                  <Button
-                    className="rounded-full gradient-brand text-white hover:opacity-90 whitespace-nowrap"
-                    onClick={() => open(services.map((s) => s.id))}
-                  >
-                    Get the bundle
-                    <ArrowUpRight size={16} className="ml-1" />
-                  </Button>
-                </div>
-              </div>
-            </BundleFrame>
+        {/* Service card grid */}
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {services.map((s, i) => (
+            <ServiceCard
+              key={s.id}
+              service={s}
+              index={i}
+              inCart={cart.includes(s.id)}
+              onToggle={() => toggleInCart(s.id)}
+              onOrderOne={() => {
+                addToCart(s.id);
+                open([s.id]);
+              }}
+            />
+          ))}
+        </div>
+
+        {/* BOTTOM BUNDLE BAR */}
+        <Reveal delay={0.15}>
+          <div className="mt-8">
+            <BundleBar
+              selectedCount={selectedServices.length}
+              total={total}
+              savings={savings}
+              regularPrice={pricing.package.regularPrice}
+              packagePrice={pricing.package.price}
+              isFullPackage={isFullPackage}
+              onSelectAll={selectAll}
+              onCheckout={() => open()}
+              onClear={clearCart}
+              position="bottom"
+            />
           </div>
         </Reveal>
       </Container>
@@ -97,139 +96,214 @@ export function Services() {
   );
 }
 
-/* ---------- Bundle frame ---------- */
-function BundleFrame({
-  children,
-  packagePrice,
+/* ---------- Bundle bar ---------- */
+function BundleBar({
+  selectedCount,
+  total,
   savings,
+  regularPrice,
+  packagePrice,
+  isFullPackage,
+  onSelectAll,
+  onCheckout,
+  onClear,
+  position,
 }: {
-  children: React.ReactNode;
-  packagePrice: number;
+  selectedCount: number;
+  total: number;
   savings: number;
+  regularPrice: number;
+  packagePrice: number;
+  isFullPackage: boolean;
+  onSelectAll: () => void;
+  onCheckout: () => void;
+  onClear: () => void;
+  position: "top" | "bottom";
 }) {
+  const hasSelection = selectedCount > 0;
   return (
-    <div className="relative rounded-[2.25rem] border-2 border-dashed border-brand-deep/25 bg-gradient-to-br from-brand-soft/60 via-transparent to-brand-light/30 p-4 sm:p-6 md:p-8">
+    <div className="relative">
       {/* Corner badge */}
-      <motion.div
-        initial={{ scale: 0, rotate: -12 }}
-        whileInView={{ scale: 1, rotate: -6 }}
-        viewport={{ once: true }}
-        transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.3 }}
-        className="absolute -top-4 left-6 z-10 flex items-center gap-2 rounded-full gradient-brand px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.15em] text-white shadow-lg shadow-brand-deep/30"
+      {position === "top" && (
+        <motion.div
+          initial={{ scale: 0, rotate: -12 }}
+          whileInView={{ scale: 1, rotate: -4 }}
+          viewport={{ once: true }}
+          transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.2 }}
+          className="absolute -top-3 left-6 z-10 flex items-center gap-1.5 rounded-full gradient-brand px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.15em] text-white elev-2"
+        >
+          <Sparkles size={11} /> Bundle & save €{savings > 0 ? savings : 30}
+        </motion.div>
+      )}
+      <div
+        className={cn(
+          "relative flex flex-col gap-4 rounded-3xl border-2 border-dashed border-brand-deep/25 bg-gradient-to-br from-brand-soft/70 via-background to-brand-light/40 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5",
+          "dark:from-brand-soft/40 dark:via-card/60 dark:to-brand-light/20",
+        )}
       >
-        <Sparkles size={12} /> Bundle & save {formatCurrency(savings)}
-      </motion.div>
-      <div className="absolute -top-4 right-6 hidden rounded-full border border-brand-deep/25 bg-background px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-brand-deep sm:block">
-        All six for {formatCurrency(packagePrice)}
+        <div className="flex items-center gap-3">
+          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl gradient-brand text-white elev-2">
+            <ShoppingBag size={18} />
+          </span>
+          <div className="min-w-0">
+            <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-deep">
+              Your bundle
+            </div>
+            <div className="font-display truncate text-lg leading-tight">
+              {hasSelection ? (
+                <>
+                  {selectedCount} of 6 selected ·{" "}
+                  <span className="text-gradient-brand">
+                    {formatCurrency(total)}
+                  </span>
+                  {isFullPackage && (
+                    <span className="ml-1 text-sm text-muted-foreground line-through">
+                      {formatCurrency(regularPrice)}
+                    </span>
+                  )}
+                </>
+              ) : (
+                <>Build your bundle — start by adding a service</>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2">
+          {hasSelection && (
+            <Button
+              variant="ghost"
+              size="sm"
+              className="rounded-full"
+              onClick={onClear}
+            >
+              <X size={14} className="mr-1" /> Clear
+            </Button>
+          )}
+          {!isFullPackage && (
+            <Button
+              variant="outline"
+              size="sm"
+              className="rounded-full border-brand-deep/30 bg-background"
+              onClick={onSelectAll}
+            >
+              Add all six · {formatCurrency(packagePrice)}
+            </Button>
+          )}
+          <Button
+            size="sm"
+            className="rounded-full gradient-brand text-white hover:opacity-90 elev-2 disabled:opacity-50"
+            disabled={!hasSelection}
+            onClick={onCheckout}
+          >
+            Checkout <ArrowUpRight size={14} className="ml-1" />
+          </Button>
+        </div>
       </div>
-      {children}
     </div>
   );
 }
 
-/* ---------- Individual service pill ---------- */
-function ServicePill({
+/* ---------- Service card (smaller, layered) ---------- */
+function ServiceCard({
   service,
   index,
-  isHovered,
-  onHover,
-  onOrder,
+  inCart,
+  onToggle,
+  onOrderOne,
 }: {
-  service: (typeof site)["services"][number];
+  service: Service;
   index: number;
-  isHovered: boolean;
-  onHover: (id: string | null) => void;
-  onOrder: () => void;
+  inCart: boolean;
+  onToggle: () => void;
+  onOrderOne: () => void;
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.6, delay: (index % 3) * 0.08, ease: [0.22, 1, 0.36, 1] }}
-      whileHover={{ y: -6 }}
-      onMouseEnter={() => onHover(service.id)}
-      onMouseLeave={() => onHover(null)}
-      className="group relative aspect-[4/5] cursor-pointer overflow-hidden rounded-[2rem] shadow-lg shadow-brand-deep/10 ring-1 ring-black/5"
+      transition={{ duration: 0.55, delay: (index % 3) * 0.06, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ y: -4 }}
+      className={cn(
+        "group relative overflow-hidden rounded-2xl border bg-card elev-2 transition-all duration-300 hover:elev-3",
+        inCart ? "border-brand ring-2 ring-brand/40" : "border-border",
+      )}
     >
-      {/* Background image */}
-      <img
-        src={service.image}
-        alt={service.title}
-        loading="lazy"
-        className={cn(
-          "absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] ease-out",
-          isHovered ? "scale-110" : "scale-100",
-        )}
-      />
-
-      {/* Gradient overlay always */}
-      <div className="absolute inset-0 bg-gradient-to-t from-brand-deep via-brand-deep/40 to-transparent" />
-
-      {/* Hover: full navy overlay */}
-      <div
-        className={cn(
-          "absolute inset-0 bg-gradient-to-br from-brand-deep/95 via-brand-deep/85 to-brand/70 transition-opacity duration-500",
-          isHovered ? "opacity-100" : "opacity-0",
-        )}
-      />
-
-      {/* Top-right price chip */}
-      <span className="absolute right-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold text-brand-deep backdrop-blur">
-        {formatCurrency(service.price)}
-      </span>
-
-      {/* Icon top-left */}
-      <span className="absolute left-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-white/90 text-brand-deep backdrop-blur">
-        <Icon name={service.icon} size={16} />
-      </span>
-
-      {/* Default state: just title at bottom */}
-      <div
-        className={cn(
-          "absolute inset-x-5 bottom-5 transition-all duration-500",
-          isHovered ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0",
-        )}
-      >
-        <div className="text-[10px] uppercase tracking-[0.22em] text-white/70">
-          Service · Delivered in 2 wks
-        </div>
-        <div className="font-display mt-1 text-2xl leading-tight text-white">
-          {service.title}
-        </div>
-      </div>
-
-      {/* Hover state: details */}
-      <div
-        className={cn(
-          "absolute inset-0 flex flex-col justify-between p-5 transition-all duration-500",
-          isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none",
-        )}
-      >
-        <div className="mt-14">
-          <div className="font-display text-xl leading-tight text-white">
+      {/* Image band */}
+      <div className="relative aspect-[16/10] overflow-hidden">
+        <img
+          src={service.image}
+          alt={service.title}
+          loading="lazy"
+          className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/70 via-brand-deep/10 to-transparent" />
+        <span className="absolute left-3 top-3 grid h-9 w-9 place-items-center rounded-full bg-white/90 text-brand-deep backdrop-blur elev-1">
+          <Icon name={service.icon} size={14} />
+        </span>
+        <span className="absolute right-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-semibold text-brand-deep elev-1 backdrop-blur">
+          {formatCurrency(service.price)}
+        </span>
+        <div className="absolute inset-x-4 bottom-3">
+          <div className="font-display text-lg leading-tight text-white">
             {service.title}
           </div>
-          <p className="mt-2 text-sm text-white/80">{service.shortDescription}</p>
-          <ul className="mt-4 space-y-1.5">
-            {service.features.slice(0, 4).map((f) => (
-              <li key={f} className="flex items-start gap-2 text-[13px] text-white/90">
-                <Check size={13} className="mt-0.5 shrink-0 text-brand-light" />
-                <span>{f}</span>
-              </li>
-            ))}
-          </ul>
         </div>
-        <Button
-          size="sm"
-          className="w-full rounded-full bg-white text-brand-deep hover:bg-white/90"
-          onClick={(e) => {
-            e.stopPropagation();
-            onOrder();
-          }}
-        >
-          Order this — {formatCurrency(service.price)}
-        </Button>
+
+        {/* In-cart check */}
+        <AnimatePresence>
+          {inCart && (
+            <motion.span
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 18 }}
+              className="absolute right-3 bottom-3 grid h-8 w-8 place-items-center rounded-full gradient-brand text-white elev-2"
+              aria-hidden
+            >
+              <Check size={14} />
+            </motion.span>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* Body */}
+      <div className="p-4">
+        <p className="line-clamp-2 text-xs text-muted-foreground">
+          {service.shortDescription}
+        </p>
+        <div className="mt-3 flex items-center gap-2">
+          <Button
+            size="sm"
+            variant={inCart ? "default" : "outline"}
+            className={cn(
+              "flex-1 rounded-full text-xs",
+              inCart
+                ? "gradient-brand text-white hover:opacity-90"
+                : "border-brand-deep/25 bg-background hover:bg-secondary",
+            )}
+            onClick={onToggle}
+          >
+            {inCart ? (
+              <>
+                <Check size={13} className="mr-1" /> Added
+              </>
+            ) : (
+              <>
+                <Plus size={13} className="mr-1" /> Add
+              </>
+            )}
+          </Button>
+          <Button
+            size="sm"
+            variant="ghost"
+            className="rounded-full text-xs"
+            onClick={onOrderOne}
+          >
+            Order just this
+          </Button>
+        </div>
       </div>
     </motion.div>
   );
