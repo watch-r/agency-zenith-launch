@@ -630,7 +630,11 @@ function StepReview({
         <dl className="space-y-1.5 border-t border-border px-5 py-4 text-sm">
           <Row label="Subtotal" value={formatCurrency(subtotal)} />
           {isFullPackage && (
-            <Row label="Bundle discount" value={`− ${formatCurrency(discount)}`} accent />
+            <Row
+              label={`Bundle discount (${discountPct}% off)`}
+              value={`− ${formatCurrency(discount)}`}
+              accent
+            />
           )}
           <div className="mt-3 flex items-center justify-between border-t border-border pt-3">
             <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
