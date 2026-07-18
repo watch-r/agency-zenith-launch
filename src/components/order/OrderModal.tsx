@@ -381,7 +381,7 @@ function StepCart({
             <div className="font-medium">The Ten Piece Bundle unlocked</div>
             <div className="text-xs text-muted-foreground">
               Regular {formatCurrency(regularPrice)} → {formatCurrency(total)} · you save{" "}
-              {formatCurrency(discount)}
+              {formatCurrency(discount)} ({discountPct}% off)
             </div>
           </div>
         </motion.div>
