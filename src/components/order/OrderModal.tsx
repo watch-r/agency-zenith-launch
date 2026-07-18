@@ -648,9 +648,22 @@ function StepReview({
       </div>
 
       {/* Delivery */}
-      <div className="rounded-2xl border border-dashed border-brand/30 bg-brand-soft/40 p-4 text-xs text-muted-foreground">
-        Each service is delivered within two weeks. Bundles run on a coordinated 6–8 week
-        schedule. You'll get a project brief within one working day.
+      <div className="flex items-start gap-3 rounded-2xl border border-brand/30 bg-brand-soft/40 p-4">
+        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl gradient-brand text-white">
+          <CalendarClock size={16} />
+        </span>
+        <div className="min-w-0 flex-1 text-xs">
+          <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-deep">
+            Delivery timeline
+          </div>
+          <div className="font-display text-base text-foreground">
+            {deliveryEstimate.weeks} · {deliveryEstimate.label}
+          </div>
+          <div className="text-muted-foreground">
+            Kickoff {deliveryEstimate.startDate} — delivery by{" "}
+            <span className="font-semibold text-foreground">{deliveryEstimate.endDate}</span>
+          </div>
+        </div>
       </div>
     </div>
   );
