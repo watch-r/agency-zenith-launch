@@ -37,7 +37,7 @@ const emptyCustomer: OrderCustomer = {
 };
 
 export function OrderModal() {
-  const { isOpen, close, cart, removeFromCart, clearCart, setCart } = useOrder();
+  const { isOpen, close, cart, removeFromCart, clearCart, setCart, addToCart } = useOrder();
   const services = site.services;
   const pricing = site.pricing;
   const paymentMethods = site.paymentMethods;
@@ -61,11 +61,19 @@ export function OrderModal() {
     () => services.filter((s) => cart.includes(s.id)),
     [services, cart],
   );
+  const availableServices = useMemo(
+    () => services.filter((s) => !cart.includes(s.id)),
+    [services, cart],
+  );
 
   const isFullPackage = selectedServices.length === services.length;
   const subtotal = selectedServices.reduce((sum, s) => sum + s.price, 0);
   const discount = isFullPackage ? pricing.package.savings : 0;
   const total = isFullPackage ? pricing.package.price : subtotal;
+  const discountPct = isFullPackage
+    ? Math.round((discount / pricing.package.regularPrice) * 100)
+    : 0;
+  const deliveryEstimate = estimateDelivery(selectedServices.length, isFullPackage);
 
   const canProceed = () => {
     if (step === 1) return cart.length > 0;
