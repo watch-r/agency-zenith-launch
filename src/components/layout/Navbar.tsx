@@ -65,6 +65,28 @@ export function Navbar() {
 
         <div className="flex items-center gap-1">
           <ThemeToggle />
+          <button
+            type="button"
+            onClick={() => open()}
+            aria-label={`Open cart — ${cart.length} item${cart.length === 1 ? "" : "s"}`}
+            className="relative grid h-9 w-9 place-items-center rounded-full text-foreground transition-colors hover:bg-secondary"
+          >
+            <ShoppingBag size={16} />
+            <AnimatePresence>
+              {cart.length > 0 && (
+                <motion.span
+                  key={cart.length}
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0, opacity: 0 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                  className="absolute -right-0.5 -top-0.5 grid h-4 min-w-4 place-items-center rounded-full gradient-brand px-1 text-[10px] font-bold text-white ring-2 ring-background"
+                >
+                  {cart.length}
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </button>
           <Button
             className="hidden rounded-full gradient-brand text-white hover:opacity-90 sm:inline-flex"
             size="sm"
