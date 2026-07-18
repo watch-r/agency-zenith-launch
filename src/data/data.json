@@ -28,7 +28,7 @@
     "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80",
     "imageAlt": "Creative team collaborating around a table",
     "gallery": [
-      { "src": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=85", "alt": "Team collaborating around a table", "caption": "Studio · Amsterdam" },
+      { "src": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=85", "alt": "Team collaborating around a table", "caption": "Studio · London" },
       { "src": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=85", "alt": "Bright studio workspace", "caption": "Brand systems" },
       { "src": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1600&q=85", "alt": "Client presentation", "caption": "Strategy sessions" },
       { "src": "https://images.unsplash.com/photo-1531973576160-7125cd663d86?auto=format&fit=crop&w=1600&q=85", "alt": "Creative direction meeting", "caption": "Creative direction" },
@@ -232,7 +232,7 @@
     "items": [
       { "title": "Senior-led, always", "description": "You work directly with the people doing the work. No layers, no juniors handed the account.", "icon": "Users" },
       { "title": "One integrated team", "description": "Brand, content, SEO and paid under one roof — so nothing gets lost between agencies.", "icon": "Layers" },
-      { "title": "Fixed, transparent pricing", "description": "Every service is €50. Every package price is on this page. No mystery scoping.", "icon": "Receipt" },
+      { "title": "Fixed, transparent pricing", "description": "Every service is £500. Every package price is on this page. No mystery scoping.", "icon": "Receipt" },
       { "title": "Measurable from day one", "description": "We set the metrics that matter with you, and report on them honestly every month.", "icon": "LineChart" }
     ]
   },
