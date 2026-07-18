@@ -325,6 +325,8 @@ function Stepper({ current }: { current: Step }) {
 /* ---------- Step 1: cart summary ---------- */
 function StepCart({
   services,
+  available,
+  onAdd,
   onRemove,
   onClear,
   onAddAll,
@@ -332,9 +334,13 @@ function StepCart({
   subtotal,
   total,
   discount,
+  discountPct,
   regularPrice,
+  deliveryEstimate,
 }: {
   services: Service[];
+  available: Service[];
+  onAdd: (id: string) => void;
   onRemove: (id: string) => void;
   onClear: () => void;
   onAddAll: () => void;
@@ -342,7 +348,9 @@ function StepCart({
   subtotal: number;
   total: number;
   discount: number;
+  discountPct: number;
   regularPrice: number;
+  deliveryEstimate: DeliveryEstimate;
 }) {
   if (services.length === 0) {
     return (
