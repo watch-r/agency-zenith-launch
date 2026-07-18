@@ -573,14 +573,18 @@ function StepReview({
   isFullPackage,
   subtotal,
   discount,
+  discountPct,
   total,
+  deliveryEstimate,
 }: {
   services: Service[];
   customer: OrderCustomer;
   isFullPackage: boolean;
   subtotal: number;
   discount: number;
+  discountPct: number;
   total: number;
+  deliveryEstimate: DeliveryEstimate;
 }) {
   return (
     <div className="space-y-5">
