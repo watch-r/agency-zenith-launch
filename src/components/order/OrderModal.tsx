@@ -137,6 +137,8 @@ export function OrderModal() {
               {step === 1 && (
                 <StepCart
                   services={selectedServices}
+                  available={availableServices}
+                  onAdd={addToCart}
                   onRemove={removeFromCart}
                   onClear={clearCart}
                   onAddAll={() => setCart(services.map((s) => s.id))}
@@ -144,7 +146,9 @@ export function OrderModal() {
                   subtotal={subtotal}
                   total={total}
                   discount={discount}
+                  discountPct={discountPct}
                   regularPrice={pricing.package.regularPrice}
+                  deliveryEstimate={deliveryEstimate}
                 />
               )}
               {step === 2 && <StepCustomer value={customer} onChange={setCustomer} />}
@@ -155,7 +159,9 @@ export function OrderModal() {
                   isFullPackage={isFullPackage}
                   subtotal={subtotal}
                   discount={discount}
+                  discountPct={discountPct}
                   total={total}
+                  deliveryEstimate={deliveryEstimate}
                 />
               )}
               {step === 4 && (
@@ -171,6 +177,7 @@ export function OrderModal() {
                   orderNumber={result.orderNumber}
                   services={selectedServices}
                   total={total}
+                  deliveryEstimate={deliveryEstimate}
                 />
               )}
             </motion.div>
