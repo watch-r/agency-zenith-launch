@@ -250,6 +250,50 @@ export function OrderModal() {
   );
 }
 
+interface DeliveryEstimate {
+  label: string;
+  weeks: string;
+  detail: string;
+  startDate: string;
+  endDate: string;
+}
+
+function estimateDelivery(count: number, isFullPackage: boolean): DeliveryEstimate {
+  let minW = 1;
+  let maxW = 2;
+  let label = "Small project";
+  if (isFullPackage) {
+    minW = 6;
+    maxW = 8;
+    label = "Full bundle";
+  } else if (count >= 4) {
+    minW = 4;
+    maxW = 6;
+    label = "Large project";
+  } else if (count >= 2) {
+    minW = 2;
+    maxW = 4;
+    label = "Medium project";
+  }
+  const now = new Date();
+  const start = new Date(now);
+  start.setDate(start.getDate() + 2); // kickoff in ~2 business days
+  const end = new Date(start);
+  end.setDate(end.getDate() + maxW * 7);
+  const fmt = (d: Date) =>
+    d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+  return {
+    label,
+    weeks: `${minW}–${maxW} weeks`,
+    detail:
+      count === 0
+        ? "Pick a service to see delivery estimate"
+        : `${label} · ${count} service${count === 1 ? "" : "s"} · scoped for ${minW}–${maxW} weeks`,
+    startDate: fmt(start),
+    endDate: fmt(end),
+  };
+}
+
 function stepTitle(step: Step) {
   return (
     {
