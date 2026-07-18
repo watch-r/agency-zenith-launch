@@ -79,7 +79,7 @@
       "icon": "Search",
       "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
       "features": ["Technical & on-page audit", "Keyword & intent mapping", "Content roadmap", "Monthly reporting"],
-      "price": 50
+      "price": 500
     },
     {
       "id": "svc-social",
@@ -90,7 +90,7 @@
       "icon": "Instagram",
       "image": "https://images.unsplash.com/photo-1611926653458-09294b3142bf?auto=format&fit=crop&w=1200&q=80",
       "features": ["Content calendar", "Design templates", "Community replies", "Growth reporting"],
-      "price": 50
+      "price": 500
     },
     {
       "id": "svc-content",
@@ -101,7 +101,7 @@
       "icon": "PenLine",
       "image": "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1200&q=80",
       "features": ["Editorial strategy", "4 long-form pieces / mo", "Newsletter production", "SEO integration"],
-      "price": 50
+      "price": 500
     },
     {
       "id": "svc-ads",
@@ -112,7 +112,7 @@
       "icon": "TrendingUp",
       "image": "https://images.unsplash.com/photo-1533750516457-a7f992034fec?auto=format&fit=crop&w=1200&q=80",
       "features": ["Campaign strategy", "Creative production", "Bid management", "Weekly optimisation"],
-      "price": 50
+      "price": 500
     },
     {
       "id": "svc-brand",
@@ -123,7 +123,7 @@
       "icon": "Palette",
       "image": "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1200&q=80",
       "features": ["Discovery workshop", "Logo & mark", "Visual system", "Brand guidelines"],
-      "price": 50
+      "price": 500
     },
     {
       "id": "svc-web",
@@ -134,7 +134,7 @@
       "icon": "Monitor",
       "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1200&q=80",
       "features": ["UX architecture", "Visual design", "Development", "Analytics setup"],
-      "price": 50
+      "price": 500
     }
   ],
   "featuredServices": [
@@ -242,7 +242,7 @@
     "individual": {
       "title": "Individual service",
       "description": "Pick just what you need. Every service, one flat rate.",
-      "price": 50,
+      "price": 500,
       "features": ["Any single service from our list", "Senior-led delivery", "Two rounds of revisions", "Delivered within two weeks"]
     },
     "package": {
