@@ -14,9 +14,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowLeft,
   ArrowRight,
+  CalendarClock,
   Check,
   Loader2,
   Lock,
+  Plus,
   Shield,
   ShoppingBag,
   Sparkles,
