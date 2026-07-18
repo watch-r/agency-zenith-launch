@@ -17,7 +17,6 @@ export function Portfolio() {
   return (
     <section
       id="portfolio"
-      ref={sectionRef}
       className="relative overflow-hidden py-24 md:py-32"
     >
       {/* Ambient */}
