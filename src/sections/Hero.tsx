@@ -2,7 +2,7 @@ import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
 import { useOrder } from "@/hooks/use-order";
 import { site } from "@/services/data";
-import { ArrowUpRight, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
