@@ -19,7 +19,7 @@
     { "platform": "dribbble", "label": "Dribbble", "href": "https://dribbble.com", "icon": "Dribbble" }
   ],
   "hero": {
-    "eyebrow": "Independent creative studio",
+    "eyebrow": "Est. 2019 · London",
     "headline": "Craft brands people",
     "headlineAccent": "actually remember.",
     "description": "A ten-piece team of strategists, designers and marketers building brands that are beautifully made and quietly effective.",
@@ -28,7 +28,7 @@
     "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80",
     "imageAlt": "Creative team collaborating around a table",
     "gallery": [
-      { "src": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=85", "alt": "Team collaborating around a table", "caption": "Studio · Amsterdam" },
+      { "src": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=85", "alt": "Team collaborating around a table", "caption": "Studio · London" },
       { "src": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=85", "alt": "Bright studio workspace", "caption": "Brand systems" },
       { "src": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1600&q=85", "alt": "Client presentation", "caption": "Strategy sessions" },
       { "src": "https://images.unsplash.com/photo-1531973576160-7125cd663d86?auto=format&fit=crop&w=1600&q=85", "alt": "Creative direction meeting", "caption": "Creative direction" },
@@ -79,7 +79,7 @@
       "icon": "Search",
       "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
       "features": ["Technical & on-page audit", "Keyword & intent mapping", "Content roadmap", "Monthly reporting"],
-      "price": 50
+      "price": 500
     },
     {
       "id": "svc-social",
@@ -90,7 +90,7 @@
       "icon": "Instagram",
       "image": "https://images.unsplash.com/photo-1611926653458-09294b3142bf?auto=format&fit=crop&w=1200&q=80",
       "features": ["Content calendar", "Design templates", "Community replies", "Growth reporting"],
-      "price": 50
+      "price": 500
     },
     {
       "id": "svc-content",
@@ -101,7 +101,7 @@
       "icon": "PenLine",
       "image": "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1200&q=80",
       "features": ["Editorial strategy", "4 long-form pieces / mo", "Newsletter production", "SEO integration"],
-      "price": 50
+      "price": 500
     },
     {
       "id": "svc-ads",
@@ -112,7 +112,7 @@
       "icon": "TrendingUp",
       "image": "https://images.unsplash.com/photo-1533750516457-a7f992034fec?auto=format&fit=crop&w=1200&q=80",
       "features": ["Campaign strategy", "Creative production", "Bid management", "Weekly optimisation"],
-      "price": 50
+      "price": 500
     },
     {
       "id": "svc-brand",
@@ -123,7 +123,7 @@
       "icon": "Palette",
       "image": "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1200&q=80",
       "features": ["Discovery workshop", "Logo & mark", "Visual system", "Brand guidelines"],
-      "price": 50
+      "price": 500
     },
     {
       "id": "svc-web",
@@ -134,7 +134,7 @@
       "icon": "Monitor",
       "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1200&q=80",
       "features": ["UX architecture", "Visual design", "Development", "Analytics setup"],
-      "price": 50
+      "price": 500
     }
   ],
   "featuredServices": [
@@ -232,32 +232,32 @@
     "items": [
       { "title": "Senior-led, always", "description": "You work directly with the people doing the work. No layers, no juniors handed the account.", "icon": "Users" },
       { "title": "One integrated team", "description": "Brand, content, SEO and paid under one roof — so nothing gets lost between agencies.", "icon": "Layers" },
-      { "title": "Fixed, transparent pricing", "description": "Every service is €50. Every package price is on this page. No mystery scoping.", "icon": "Receipt" },
+      { "title": "Fixed, transparent pricing", "description": "Every service is £500. Every package price is on this page. No mystery scoping.", "icon": "Receipt" },
       { "title": "Measurable from day one", "description": "We set the metrics that matter with you, and report on them honestly every month.", "icon": "LineChart" }
     ]
   },
   "pricing": {
-    "currency": "EUR",
-    "currencySymbol": "€",
+    "currency": "GBP",
+    "currencySymbol": "£",
     "individual": {
       "title": "Individual service",
-      "description": "Pick just what you need. Every service, one flat rate.",
-      "price": 50,
-      "features": ["Any single service from our list", "Senior-led delivery", "Two rounds of revisions", "Delivered within two weeks"]
+      "description": "Pick just what you need. One flat rate, senior-led delivery.",
+      "price": 500,
+      "features": ["Any single service from our list", "Senior-led delivery", "Two rounds of revisions", "Timeline scoped to project size"]
     },
     "package": {
       "title": "The Ten Piece Package",
       "description": "All six services, working together as one system.",
-      "regularPrice": 300,
-      "price": 270,
-      "savings": 30,
+      "regularPrice": 3000,
+      "price": 2700,
+      "savings": 300,
       "badge": "Best value",
       "features": [
         "All six services included",
         "Unified strategy across every channel",
         "Priority delivery timeline",
         "Dedicated project lead",
-        "You save €30 vs individual pricing"
+        "You save £300 vs individual pricing"
       ]
     }
   },
@@ -269,12 +269,12 @@
     { "id": "t5", "name": "Sofia Rinaldi", "role": "COO", "company": "Atlas & Co", "photo": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80", "rating": 5, "quote": "Ten people that operate like fifty. Every meeting is prepared, every deliverable is on time." }
   ],
   "faqs": [
-    { "id": "f1", "question": "How does the €50 pricing actually work?", "answer": "Each of our six services is offered at a fixed €50 rate for a defined scope of work. If you bundle all six, the package price is €270 — a €30 saving over buying each individually." },
+    { "id": "f1", "question": "How does your pricing work?", "answer": "Each of our six services is offered at a fixed £500 rate for a defined scope of work. Bundle all six for £2,700 — a £300 saving over buying each individually." },
     { "id": "f2", "question": "Who will I actually work with?", "answer": "You'll work directly with senior members of our ten-person studio. No account managers between you and the people doing the work." },
-    { "id": "f3", "question": "How long does a typical project take?", "answer": "Individual services are delivered within two weeks. The full package runs on a coordinated six-to-eight-week schedule." },
+    { "id": "f3", "question": "How long does a typical project take?", "answer": "Delivery is scoped to project size. Smaller projects turn around in 1–2 weeks; larger builds and the full package run on a coordinated 4–8 week schedule. We agree the timeline before we start." },
     { "id": "f4", "question": "What industries do you specialise in?", "answer": "We've done our strongest work in SaaS, DTC, hospitality and wellness — but we take on any category where craft and clarity matter." },
     { "id": "f5", "question": "Do you offer ongoing retainers?", "answer": "Yes. After a first project we often move clients onto a monthly retainer scoped around their goals." },
-    { "id": "f6", "question": "Can I order just one service?", "answer": "Absolutely. Every service is designed to stand alone at €50, though most clients get compounding value from combining several." },
+    { "id": "f6", "question": "Can I order just one service?", "answer": "Absolutely. Every service stands alone at £500, though most clients see compounding value from combining several." },
     { "id": "f7", "question": "What's your revision policy?", "answer": "Two rounds of revisions are included in every service. Additional rounds are scoped transparently." },
     { "id": "f8", "question": "How do I get started?", "answer": "Use the Start a project button. Pick your services, tell us about your business, and we'll be in touch within one working day." }
   ],
@@ -290,9 +290,10 @@
     "heading": "Tell us what you're building.",
     "description": "Send us a note about your project, your goals and your timeline. We'll reply within one working day with next steps.",
     "email": "hello@tenpiece.studio",
-    "phone": "+31 20 555 0140",
-    "address": "Prinsengracht 500, Amsterdam",
-    "hours": "Mon – Fri, 09:00 – 18:00 CET"
+    "phone": "+44 20 8050 5527",
+    "whatsapp": "442080505527",
+    "address": "128 City Road, London EC1V 2NX, United Kingdom",
+    "hours": "Mon – Fri, 09:00 – 18:00 GMT"
   },
   "footer": {
     "tagline": "An independent ten-person studio building brands and the systems that grow them.",

@@ -14,9 +14,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowLeft,
   ArrowRight,
+  CalendarClock,
   Check,
   Loader2,
   Lock,
+  Plus,
   Shield,
   ShoppingBag,
   Sparkles,
@@ -35,7 +37,7 @@ const emptyCustomer: OrderCustomer = {
 };
 
 export function OrderModal() {
-  const { isOpen, close, cart, removeFromCart, clearCart, setCart } = useOrder();
+  const { isOpen, close, cart, removeFromCart, clearCart, setCart, addToCart } = useOrder();
   const services = site.services;
   const pricing = site.pricing;
   const paymentMethods = site.paymentMethods;
@@ -59,11 +61,19 @@ export function OrderModal() {
     () => services.filter((s) => cart.includes(s.id)),
     [services, cart],
   );
+  const availableServices = useMemo(
+    () => services.filter((s) => !cart.includes(s.id)),
+    [services, cart],
+  );
 
   const isFullPackage = selectedServices.length === services.length;
   const subtotal = selectedServices.reduce((sum, s) => sum + s.price, 0);
   const discount = isFullPackage ? pricing.package.savings : 0;
   const total = isFullPackage ? pricing.package.price : subtotal;
+  const discountPct = isFullPackage
+    ? Math.round((discount / pricing.package.regularPrice) * 100)
+    : 0;
+  const deliveryEstimate = estimateDelivery(selectedServices.length, isFullPackage);
 
   const canProceed = () => {
     if (step === 1) return cart.length > 0;
@@ -127,6 +137,8 @@ export function OrderModal() {
               {step === 1 && (
                 <StepCart
                   services={selectedServices}
+                  available={availableServices}
+                  onAdd={addToCart}
                   onRemove={removeFromCart}
                   onClear={clearCart}
                   onAddAll={() => setCart(services.map((s) => s.id))}
@@ -134,7 +146,9 @@ export function OrderModal() {
                   subtotal={subtotal}
                   total={total}
                   discount={discount}
+                  discountPct={discountPct}
                   regularPrice={pricing.package.regularPrice}
+                  deliveryEstimate={deliveryEstimate}
                 />
               )}
               {step === 2 && <StepCustomer value={customer} onChange={setCustomer} />}
@@ -145,7 +159,9 @@ export function OrderModal() {
                   isFullPackage={isFullPackage}
                   subtotal={subtotal}
                   discount={discount}
+                  discountPct={discountPct}
                   total={total}
+                  deliveryEstimate={deliveryEstimate}
                 />
               )}
               {step === 4 && (
@@ -161,6 +177,7 @@ export function OrderModal() {
                   orderNumber={result.orderNumber}
                   services={selectedServices}
                   total={total}
+                  deliveryEstimate={deliveryEstimate}
                 />
               )}
             </motion.div>
@@ -233,6 +250,50 @@ export function OrderModal() {
   );
 }
 
+interface DeliveryEstimate {
+  label: string;
+  weeks: string;
+  detail: string;
+  startDate: string;
+  endDate: string;
+}
+
+function estimateDelivery(count: number, isFullPackage: boolean): DeliveryEstimate {
+  let minW = 1;
+  let maxW = 2;
+  let label = "Small project";
+  if (isFullPackage) {
+    minW = 6;
+    maxW = 8;
+    label = "Full bundle";
+  } else if (count >= 4) {
+    minW = 4;
+    maxW = 6;
+    label = "Large project";
+  } else if (count >= 2) {
+    minW = 2;
+    maxW = 4;
+    label = "Medium project";
+  }
+  const now = new Date();
+  const start = new Date(now);
+  start.setDate(start.getDate() + 2); // kickoff in ~2 business days
+  const end = new Date(start);
+  end.setDate(end.getDate() + maxW * 7);
+  const fmt = (d: Date) =>
+    d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+  return {
+    label,
+    weeks: `${minW}–${maxW} weeks`,
+    detail:
+      count === 0
+        ? "Pick a service to see delivery estimate"
+        : `${label} · ${count} service${count === 1 ? "" : "s"} · scoped for ${minW}–${maxW} weeks`,
+    startDate: fmt(start),
+    endDate: fmt(end),
+  };
+}
+
 function stepTitle(step: Step) {
   return (
     {
@@ -264,6 +325,8 @@ function Stepper({ current }: { current: Step }) {
 /* ---------- Step 1: cart summary ---------- */
 function StepCart({
   services,
+  available,
+  onAdd,
   onRemove,
   onClear,
   onAddAll,
@@ -271,9 +334,13 @@ function StepCart({
   subtotal,
   total,
   discount,
+  discountPct,
   regularPrice,
+  deliveryEstimate,
 }: {
   services: Service[];
+  available: Service[];
+  onAdd: (id: string) => void;
   onRemove: (id: string) => void;
   onClear: () => void;
   onAddAll: () => void;
@@ -281,7 +348,9 @@ function StepCart({
   subtotal: number;
   total: number;
   discount: number;
+  discountPct: number;
   regularPrice: number;
+  deliveryEstimate: DeliveryEstimate;
 }) {
   if (services.length === 0) {
     return (
@@ -312,7 +381,7 @@ function StepCart({
             <div className="font-medium">The Ten Piece Bundle unlocked</div>
             <div className="text-xs text-muted-foreground">
               Regular {formatCurrency(regularPrice)} → {formatCurrency(total)} · you save{" "}
-              {formatCurrency(discount)}
+              {formatCurrency(discount)} ({discountPct}% off)
             </div>
           </div>
         </motion.div>
@@ -345,6 +414,52 @@ function StepCart({
           </div>
         ))}
       </div>
+
+      {/* Upsell — add more services */}
+      {available.length > 0 && (
+        <div className="mt-5 rounded-2xl border border-dashed border-brand-deep/30 bg-brand-soft/40 p-4">
+          <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-deep">
+            <Plus size={13} /> Add more · save more
+          </div>
+          <div className="grid gap-2 sm:grid-cols-2">
+            {available.map((s) => (
+              <button
+                key={s.id}
+                type="button"
+                onClick={() => onAdd(s.id)}
+                className="group flex items-center gap-2 rounded-xl border border-border bg-card p-2 text-left transition-all hover:-translate-y-0.5 hover:border-brand/40 hover:elev-1"
+              >
+                <img src={s.image} alt="" className="h-9 w-9 shrink-0 rounded-lg object-cover" />
+                <div className="min-w-0 flex-1">
+                  <div className="truncate text-xs font-semibold">{s.title}</div>
+                  <div className="text-[10px] text-muted-foreground">{formatCurrency(s.price)}</div>
+                </div>
+                <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full gradient-brand text-white">
+                  <Plus size={12} />
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Delivery estimate */}
+      <div className="mt-4 flex items-start gap-3 rounded-2xl border border-brand/25 bg-gradient-to-br from-brand-soft/60 to-background p-4 elev-1">
+        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl gradient-brand text-white">
+          <CalendarClock size={16} />
+        </span>
+        <div className="min-w-0 flex-1">
+          <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-deep">
+            Estimated delivery
+          </div>
+          <div className="font-display text-lg leading-tight">{deliveryEstimate.weeks}</div>
+          <div className="text-xs text-muted-foreground">
+            {deliveryEstimate.detail} · kickoff {deliveryEstimate.startDate}, delivery by{" "}
+            <span className="font-semibold text-foreground">{deliveryEstimate.endDate}</span>
+          </div>
+        </div>
+      </div>
+
       <div className="mt-5 flex items-center justify-between">
         <button
           onClick={onClear}
@@ -353,6 +468,11 @@ function StepCart({
           Clear bundle
         </button>
         <div className="flex items-baseline gap-2">
+          {isFullPackage && discountPct > 0 && (
+            <span className="rounded-full bg-brand/10 px-2 py-0.5 text-[10px] font-bold text-brand-deep">
+              −{discountPct}%
+            </span>
+          )}
           <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
             Subtotal
           </span>
@@ -453,14 +573,18 @@ function StepReview({
   isFullPackage,
   subtotal,
   discount,
+  discountPct,
   total,
+  deliveryEstimate,
 }: {
   services: Service[];
   customer: OrderCustomer;
   isFullPackage: boolean;
   subtotal: number;
   discount: number;
+  discountPct: number;
   total: number;
+  deliveryEstimate: DeliveryEstimate;
 }) {
   return (
     <div className="space-y-5">
@@ -506,7 +630,11 @@ function StepReview({
         <dl className="space-y-1.5 border-t border-border px-5 py-4 text-sm">
           <Row label="Subtotal" value={formatCurrency(subtotal)} />
           {isFullPackage && (
-            <Row label="Bundle discount" value={`− ${formatCurrency(discount)}`} accent />
+            <Row
+              label={`Bundle discount (${discountPct}% off)`}
+              value={`− ${formatCurrency(discount)}`}
+              accent
+            />
           )}
           <div className="mt-3 flex items-center justify-between border-t border-border pt-3">
             <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
@@ -520,9 +648,22 @@ function StepReview({
       </div>
 
       {/* Delivery */}
-      <div className="rounded-2xl border border-dashed border-brand/30 bg-brand-soft/40 p-4 text-xs text-muted-foreground">
-        Each service is delivered within two weeks. Bundles run on a coordinated 6–8 week
-        schedule. You'll get a project brief within one working day.
+      <div className="flex items-start gap-3 rounded-2xl border border-brand/30 bg-brand-soft/40 p-4">
+        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl gradient-brand text-white">
+          <CalendarClock size={16} />
+        </span>
+        <div className="min-w-0 flex-1 text-xs">
+          <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-deep">
+            Delivery timeline
+          </div>
+          <div className="font-display text-base text-foreground">
+            {deliveryEstimate.weeks} · {deliveryEstimate.label}
+          </div>
+          <div className="text-muted-foreground">
+            Kickoff {deliveryEstimate.startDate} — delivery by{" "}
+            <span className="font-semibold text-foreground">{deliveryEstimate.endDate}</span>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -660,10 +801,12 @@ function StepSuccess({
   orderNumber,
   services,
   total,
+  deliveryEstimate,
 }: {
   orderNumber: string;
   services: Service[];
   total: number;
+  deliveryEstimate: DeliveryEstimate;
 }) {
   return (
     <div className="py-4 text-center">
@@ -697,7 +840,15 @@ function StepSuccess({
           <span className="font-display text-xl text-gradient-brand">
             {formatCurrency(total)}
           </span>
+        <div className="mt-3 flex items-center justify-between rounded-xl bg-brand-soft/60 px-3 py-2 text-xs">
+          <span className="flex items-center gap-1.5 text-brand-deep">
+            <CalendarClock size={12} /> Delivery
+          </span>
+          <span className="font-semibold text-foreground">
+            by {deliveryEstimate.endDate}
+          </span>
         </div>
+      </div>
       </div>
     </div>
   );

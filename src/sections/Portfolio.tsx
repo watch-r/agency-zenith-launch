@@ -1,9 +1,9 @@
 import { Container } from "@/components/layout/Container";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { site } from "@/services/data";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, X } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import type { Project } from "@/types";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
@@ -12,18 +12,11 @@ export function Portfolio() {
   const { projects } = site;
   const [active, setActive] = useState<Project | null>(null);
   const [focus, setFocus] = useState<number>(0);
-  const sectionRef = useRef<HTMLDivElement>(null);
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-  const marqueeX = useTransform(scrollYProgress, [0, 1], ["0%", "-40%"]);
 
   return (
     <section
       id="portfolio"
-      ref={sectionRef}
       className="relative overflow-hidden py-24 md:py-32"
     >
       {/* Ambient */}
@@ -119,19 +112,6 @@ export function Portfolio() {
           </div>
         </div>
 
-        {/* Marquee — client names scrolling with page */}
-        <div className="relative mt-20 overflow-hidden">
-          <motion.div
-            style={{ x: marqueeX }}
-            className="flex whitespace-nowrap gap-12 font-display text-5xl uppercase tracking-tight text-brand-deep/10 sm:text-7xl"
-          >
-            {[...projects, ...projects, ...projects].map((p, i) => (
-              <span key={`${p.id}-${i}`} className="shrink-0">
-                {p.client} <span className="text-brand/30">✦</span>
-              </span>
-            ))}
-          </motion.div>
-        </div>
       </Container>
 
       {/* Detail dialog */}
@@ -222,8 +202,8 @@ function ProjectRow({
       className={cn(
         "group relative block w-full overflow-hidden rounded-2xl border p-5 text-left transition-all duration-500",
         isActive
-          ? "border-brand-deep/30 bg-gradient-to-br from-brand-soft via-background to-brand-light/40 elev-2"
-          : "border-transparent hover:border-border",
+          ? "border-brand/40 bg-gradient-to-br from-brand-soft via-brand-light/50 to-background elev-2"
+          : "border-brand-deep/15 bg-card/70 hover:border-brand-deep/30 hover:bg-brand-soft/60",
       )}
     >
       <div className="flex items-start justify-between gap-4">

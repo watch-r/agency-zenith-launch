@@ -2,7 +2,7 @@ import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
 import { useOrder } from "@/hooks/use-order";
 import { site } from "@/services/data";
-import { ArrowUpRight, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
@@ -59,14 +59,23 @@ export function Hero() {
       </div>
 
       <Container className="relative">
-        <motion.span
+        <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 rounded-full border border-brand/30 bg-background/70 px-3 py-1.5 text-xs uppercase tracking-[0.22em] text-brand-deep backdrop-blur"
+          className="inline-flex items-center gap-3 rounded-full border border-brand-deep/15 bg-card px-1 py-1 pr-4 elev-1 backdrop-blur"
         >
-          <Sparkles size={12} className="text-brand" /> {hero.eyebrow}
-        </motion.span>
+          <span className="grid h-6 w-6 place-items-center rounded-full bg-gradient-to-br from-brand to-brand-deep text-[9px] font-bold uppercase tracking-widest text-white">
+            10
+          </span>
+          <span className="flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.22em] text-foreground/80">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-70" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            </span>
+            {hero.eyebrow}
+          </span>
+        </motion.div>
 
         <div className="mt-6 grid gap-10 md:grid-cols-[1.15fr_1fr] md:items-center md:gap-12">
           {/* Copy side */}
