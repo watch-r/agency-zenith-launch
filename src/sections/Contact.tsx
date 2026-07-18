@@ -62,25 +62,31 @@ export function Contact() {
     reset();
   };
 
+  const waNumber = (contact.whatsapp ?? contact.phone).replace(/\D/g, "");
   const contactCards = [
     {
+      tone: "brand" as const,
       icon: <Mail size={16} />,
       label: "Email",
       value: contact.email,
       href: `mailto:${contact.email}`,
     },
     {
+      tone: "emerald" as const,
       icon: <Phone size={16} />,
-      label: "Phone",
+      label: "WhatsApp",
       value: contact.phone,
-      href: `tel:${contact.phone.replace(/\s/g, "")}`,
+      href: `https://wa.me/${waNumber}`,
+      external: true,
     },
     {
+      tone: "amber" as const,
       icon: <MapPin size={16} />,
       label: "Studio",
       value: contact.address,
     },
     {
+      tone: "violet" as const,
       icon: <Clock size={16} />,
       label: "Hours",
       value: contact.hours,
