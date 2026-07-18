@@ -32,7 +32,7 @@ const schema = z.object({
   message: z.string().trim().min(10, "A short brief helps").max(1200),
 }) satisfies z.ZodType<ContactFormPayload>;
 
-const budgets = ["< €500", "€500 – €1,000", "€1,000 – €3,000", "€3,000+"];
+const budgets = ["< £500", "£500 – £1,500", "£1,500 – £3,000", "£3,000+"];
 
 export function Contact() {
   const { contact, services } = site;
