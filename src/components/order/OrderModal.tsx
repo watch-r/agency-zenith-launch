@@ -414,6 +414,52 @@ function StepCart({
           </div>
         ))}
       </div>
+
+      {/* Upsell — add more services */}
+      {available.length > 0 && (
+        <div className="mt-5 rounded-2xl border border-dashed border-brand-deep/30 bg-brand-soft/40 p-4">
+          <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-deep">
+            <Plus size={13} /> Add more · save more
+          </div>
+          <div className="grid gap-2 sm:grid-cols-2">
+            {available.map((s) => (
+              <button
+                key={s.id}
+                type="button"
+                onClick={() => onAdd(s.id)}
+                className="group flex items-center gap-2 rounded-xl border border-border bg-card p-2 text-left transition-all hover:-translate-y-0.5 hover:border-brand/40 hover:elev-1"
+              >
+                <img src={s.image} alt="" className="h-9 w-9 shrink-0 rounded-lg object-cover" />
+                <div className="min-w-0 flex-1">
+                  <div className="truncate text-xs font-semibold">{s.title}</div>
+                  <div className="text-[10px] text-muted-foreground">{formatCurrency(s.price)}</div>
+                </div>
+                <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full gradient-brand text-white">
+                  <Plus size={12} />
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Delivery estimate */}
+      <div className="mt-4 flex items-start gap-3 rounded-2xl border border-brand/25 bg-gradient-to-br from-brand-soft/60 to-background p-4 elev-1">
+        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl gradient-brand text-white">
+          <CalendarClock size={16} />
+        </span>
+        <div className="min-w-0 flex-1">
+          <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-deep">
+            Estimated delivery
+          </div>
+          <div className="font-display text-lg leading-tight">{deliveryEstimate.weeks}</div>
+          <div className="text-xs text-muted-foreground">
+            {deliveryEstimate.detail} · kickoff {deliveryEstimate.startDate}, delivery by{" "}
+            <span className="font-semibold text-foreground">{deliveryEstimate.endDate}</span>
+          </div>
+        </div>
+      </div>
+
       <div className="mt-5 flex items-center justify-between">
         <button
           onClick={onClear}
@@ -422,6 +468,11 @@ function StepCart({
           Clear bundle
         </button>
         <div className="flex items-baseline gap-2">
+          {isFullPackage && discountPct > 0 && (
+            <span className="rounded-full bg-brand/10 px-2 py-0.5 text-[10px] font-bold text-brand-deep">
+              −{discountPct}%
+            </span>
+          )}
           <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
             Subtotal
           </span>
