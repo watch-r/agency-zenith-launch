@@ -7,7 +7,7 @@ interface FloatingWhatsAppProps {
 }
 
 export function FloatingWhatsApp({
-  phone = "31205550140",
+  phone = "442080505527",
   message = "Hi Ten Piece — I'd like to chat about a project.",
 }: FloatingWhatsAppProps) {
   const href = `https://wa.me/${phone.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`;
