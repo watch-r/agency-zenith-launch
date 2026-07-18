@@ -237,27 +237,27 @@
     ]
   },
   "pricing": {
-    "currency": "EUR",
-    "currencySymbol": "€",
+    "currency": "GBP",
+    "currencySymbol": "£",
     "individual": {
       "title": "Individual service",
-      "description": "Pick just what you need. Every service, one flat rate.",
+      "description": "Pick just what you need. One flat rate, senior-led delivery.",
       "price": 500,
-      "features": ["Any single service from our list", "Senior-led delivery", "Two rounds of revisions", "Delivered within two weeks"]
+      "features": ["Any single service from our list", "Senior-led delivery", "Two rounds of revisions", "Timeline scoped to project size"]
     },
     "package": {
       "title": "The Ten Piece Package",
       "description": "All six services, working together as one system.",
-      "regularPrice": 300,
-      "price": 270,
-      "savings": 30,
+      "regularPrice": 3000,
+      "price": 2700,
+      "savings": 300,
       "badge": "Best value",
       "features": [
         "All six services included",
         "Unified strategy across every channel",
         "Priority delivery timeline",
         "Dedicated project lead",
-        "You save €30 vs individual pricing"
+        "You save £300 vs individual pricing"
       ]
     }
   },
@@ -269,12 +269,12 @@
     { "id": "t5", "name": "Sofia Rinaldi", "role": "COO", "company": "Atlas & Co", "photo": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80", "rating": 5, "quote": "Ten people that operate like fifty. Every meeting is prepared, every deliverable is on time." }
   ],
   "faqs": [
-    { "id": "f1", "question": "How does the €50 pricing actually work?", "answer": "Each of our six services is offered at a fixed €50 rate for a defined scope of work. If you bundle all six, the package price is €270 — a €30 saving over buying each individually." },
+    { "id": "f1", "question": "How does your pricing work?", "answer": "Each of our six services is offered at a fixed £500 rate for a defined scope of work. Bundle all six for £2,700 — a £300 saving over buying each individually." },
     { "id": "f2", "question": "Who will I actually work with?", "answer": "You'll work directly with senior members of our ten-person studio. No account managers between you and the people doing the work." },
-    { "id": "f3", "question": "How long does a typical project take?", "answer": "Individual services are delivered within two weeks. The full package runs on a coordinated six-to-eight-week schedule." },
+    { "id": "f3", "question": "How long does a typical project take?", "answer": "Delivery is scoped to project size. Smaller projects turn around in 1–2 weeks; larger builds and the full package run on a coordinated 4–8 week schedule. We agree the timeline before we start." },
     { "id": "f4", "question": "What industries do you specialise in?", "answer": "We've done our strongest work in SaaS, DTC, hospitality and wellness — but we take on any category where craft and clarity matter." },
     { "id": "f5", "question": "Do you offer ongoing retainers?", "answer": "Yes. After a first project we often move clients onto a monthly retainer scoped around their goals." },
-    { "id": "f6", "question": "Can I order just one service?", "answer": "Absolutely. Every service is designed to stand alone at €50, though most clients get compounding value from combining several." },
+    { "id": "f6", "question": "Can I order just one service?", "answer": "Absolutely. Every service stands alone at £500, though most clients see compounding value from combining several." },
     { "id": "f7", "question": "What's your revision policy?", "answer": "Two rounds of revisions are included in every service. Additional rounds are scoped transparently." },
     { "id": "f8", "question": "How do I get started?", "answer": "Use the Start a project button. Pick your services, tell us about your business, and we'll be in touch within one working day." }
   ],
@@ -290,9 +290,10 @@
     "heading": "Tell us what you're building.",
     "description": "Send us a note about your project, your goals and your timeline. We'll reply within one working day with next steps.",
     "email": "hello@tenpiece.studio",
-    "phone": "+31 20 555 0140",
-    "address": "Prinsengracht 500, Amsterdam",
-    "hours": "Mon – Fri, 09:00 – 18:00 CET"
+    "phone": "+44 20 8050 5527",
+    "whatsapp": "442080505527",
+    "address": "128 City Road, London EC1V 2NX, United Kingdom",
+    "hours": "Mon – Fri, 09:00 – 18:00 GMT"
   },
   "footer": {
     "tagline": "An independent ten-person studio building brands and the systems that grow them.",
