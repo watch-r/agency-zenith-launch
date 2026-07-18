@@ -840,7 +840,15 @@ function StepSuccess({
           <span className="font-display text-xl text-gradient-brand">
             {formatCurrency(total)}
           </span>
+        <div className="mt-3 flex items-center justify-between rounded-xl bg-brand-soft/60 px-3 py-2 text-xs">
+          <span className="flex items-center gap-1.5 text-brand-deep">
+            <CalendarClock size={12} /> Delivery
+          </span>
+          <span className="font-semibold text-foreground">
+            by {deliveryEstimate.endDate}
+          </span>
         </div>
+      </div>
       </div>
     </div>
   );
