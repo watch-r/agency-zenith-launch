@@ -801,10 +801,12 @@ function StepSuccess({
   orderNumber,
   services,
   total,
+  deliveryEstimate,
 }: {
   orderNumber: string;
   services: Service[];
   total: number;
+  deliveryEstimate: DeliveryEstimate;
 }) {
   return (
     <div className="py-4 text-center">
