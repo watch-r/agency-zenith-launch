@@ -20,6 +20,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Controller } from "react-hook-form";
+import { cn } from "@/lib/utils";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Please tell us your name").max(80),
