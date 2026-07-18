@@ -159,6 +159,7 @@ export interface ContactInformation {
   description: string;
   email: string;
   phone: string;
+  whatsapp?: string;
   address: string;
   hours: string;
 }
