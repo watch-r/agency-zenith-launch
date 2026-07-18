@@ -112,19 +112,6 @@ export function Portfolio() {
           </div>
         </div>
 
-        {/* Marquee — client names scrolling with page */}
-        <div className="relative mt-20 overflow-hidden">
-          <motion.div
-            style={{ x: marqueeX }}
-            className="flex whitespace-nowrap gap-12 font-display text-5xl uppercase tracking-tight text-brand-deep/10 sm:text-7xl"
-          >
-            {[...projects, ...projects, ...projects].map((p, i) => (
-              <span key={`${p.id}-${i}`} className="shrink-0">
-                {p.client} <span className="text-brand/30">✦</span>
-              </span>
-            ))}
-          </motion.div>
-        </div>
       </Container>
 
       {/* Detail dialog */}
