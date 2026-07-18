@@ -202,8 +202,8 @@ function ProjectRow({
       className={cn(
         "group relative block w-full overflow-hidden rounded-2xl border p-5 text-left transition-all duration-500",
         isActive
-          ? "border-brand-deep/30 bg-gradient-to-br from-brand-soft via-background to-brand-light/40 elev-2"
-          : "border-transparent hover:border-border",
+          ? "border-brand/40 bg-gradient-to-br from-brand-soft via-brand-light/50 to-background elev-2"
+          : "border-brand-deep/15 bg-card/70 hover:border-brand-deep/30 hover:bg-brand-soft/60",
       )}
     >
       <div className="flex items-start justify-between gap-4">
