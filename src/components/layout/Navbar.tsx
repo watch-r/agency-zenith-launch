@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 
 export function Navbar() {
   const { navigation } = site;
-  const { open } = useOrder();
+  const { open, cart } = useOrder();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
