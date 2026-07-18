@@ -238,29 +238,66 @@ export function Contact() {
   );
 }
 
+type Tone = "brand" | "emerald" | "amber" | "violet";
+const toneMap: Record<Tone, { bg: string; icon: string; border: string; glow: string }> = {
+  brand: {
+    bg: "bg-gradient-to-br from-brand-soft via-brand-light/50 to-background dark:from-brand-soft/40 dark:via-brand-light/25 dark:to-card",
+    icon: "gradient-brand text-white",
+    border: "border-brand/40",
+    glow: "bg-brand/30",
+  },
+  emerald: {
+    bg: "bg-gradient-to-br from-emerald-50 via-emerald-100/60 to-background dark:from-emerald-900/30 dark:via-emerald-800/20 dark:to-card",
+    icon: "bg-gradient-to-br from-emerald-500 to-emerald-700 text-white",
+    border: "border-emerald-400/40",
+    glow: "bg-emerald-400/40",
+  },
+  amber: {
+    bg: "bg-gradient-to-br from-amber-50 via-amber-100/60 to-background dark:from-amber-900/30 dark:via-amber-800/20 dark:to-card",
+    icon: "bg-gradient-to-br from-amber-400 to-orange-600 text-white",
+    border: "border-amber-400/40",
+    glow: "bg-amber-400/40",
+  },
+  violet: {
+    bg: "bg-gradient-to-br from-violet-50 via-violet-100/60 to-background dark:from-violet-900/30 dark:via-violet-800/20 dark:to-card",
+    icon: "bg-gradient-to-br from-violet-500 to-purple-700 text-white",
+    border: "border-violet-400/40",
+    glow: "bg-violet-400/40",
+  },
+};
+
 function ContactCard({
   icon,
   label,
   value,
   href,
+  tone,
+  external,
 }: {
   icon: React.ReactNode;
   label: string;
   value: string;
   href?: string;
+  tone: Tone;
+  external?: boolean;
 }) {
   const Wrapper: React.ElementType = href ? "a" : "div";
+  const t = toneMap[tone];
   return (
     <Wrapper
-      {...(href ? { href } : {})}
-      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card p-5 elev-1 transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:elev-3"
+      {...(href ? { href, ...(external ? { target: "_blank", rel: "noreferrer" } : {}) } : {})}
+      className={cn(
+        "group relative flex h-full flex-col overflow-hidden rounded-2xl border p-5 elev-2 transition-all duration-300 hover:-translate-y-1 hover:elev-3",
+        t.bg,
+        t.border,
+      )}
     >
-      <div className="absolute -right-6 -top-6 h-20 w-20 rounded-full bg-brand-light/60 blur-2xl transition-transform duration-500 group-hover:scale-150" />
+      <div className={cn("absolute -right-6 -top-6 h-24 w-24 rounded-full blur-2xl transition-transform duration-500 group-hover:scale-150", t.glow)} />
       <div className="relative flex h-full flex-col">
-        <span className="inline-grid h-10 w-10 place-items-center rounded-xl bg-brand-light text-brand-deep">
+        <span className={cn("inline-grid h-10 w-10 place-items-center rounded-xl elev-1", t.icon)}>
           {icon}
         </span>
-        <div className="mt-4 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+        <div className="mt-4 text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground/60">
           {label}
         </div>
         <div className="mt-1 text-sm font-semibold text-foreground">{value}</div>
