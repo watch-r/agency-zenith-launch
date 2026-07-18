@@ -21,13 +21,22 @@ export function FAQ() {
             description="Still curious? Send us a note and we'll reply within a working day."
           />
           <Reveal>
-            <Accordion type="single" collapsible className="w-full">
-              {faqs.map((f) => (
-                <AccordionItem key={f.id} value={f.id} className="border-border">
-                  <AccordionTrigger className="py-5 text-left text-base font-medium hover:no-underline">
-                    {f.question}
+            <Accordion type="single" collapsible className="flex w-full flex-col gap-3">
+              {faqs.map((f, i) => (
+                <AccordionItem
+                  key={f.id}
+                  value={f.id}
+                  className="overflow-hidden rounded-2xl border border-brand-deep/15 bg-gradient-to-br from-brand-soft/60 via-card to-brand-light/30 elev-1 transition-shadow data-[state=open]:elev-2 data-[state=open]:border-brand/40 dark:from-brand-soft/25 dark:via-card dark:to-brand-light/15"
+                >
+                  <AccordionTrigger className="group px-5 py-4 text-left text-base font-medium hover:no-underline sm:px-6">
+                    <span className="flex items-center gap-3">
+                      <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full gradient-brand font-mono text-[11px] font-bold text-white elev-1">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span>{f.question}</span>
+                    </span>
                   </AccordionTrigger>
-                  <AccordionContent className="pb-5 text-sm leading-relaxed text-muted-foreground">
+                  <AccordionContent className="border-t border-brand-deep/10 bg-background/60 px-5 pb-5 pt-4 text-sm leading-relaxed text-muted-foreground sm:px-6">
                     {f.answer}
                   </AccordionContent>
                 </AccordionItem>
