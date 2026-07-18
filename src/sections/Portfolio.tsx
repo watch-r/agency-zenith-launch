@@ -1,9 +1,9 @@
 import { Container } from "@/components/layout/Container";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { site } from "@/services/data";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, X } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import type { Project } from "@/types";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
@@ -12,13 +12,7 @@ export function Portfolio() {
   const { projects } = site;
   const [active, setActive] = useState<Project | null>(null);
   const [focus, setFocus] = useState<number>(0);
-  const sectionRef = useRef<HTMLDivElement>(null);
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-  const marqueeX = useTransform(scrollYProgress, [0, 1], ["0%", "-40%"]);
 
   return (
     <section
